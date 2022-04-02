@@ -1,6 +1,5 @@
-#mainAppPane {
+#mainPane {
     -fx-background-color:  linear-gradient(to bottom, #fdfdfd, #c0c0c0);
-    
 }
 #mainTopLabel {
     /*-fx-background-color: #e3e3e1;
@@ -13,6 +12,15 @@
     -fx-font-family: 'Lato';
     -fx-font-size: 40px;
     
+}
+#exitButton {
+    -fx-background-color:  linear-gradient(to bottom, #fdfdfd, #c0c0c0);
+    -fx-background-radius: 8;
+    -fx-border-color: transparent;
+
+}
+#exitButton:hover {
+    -fx-background-color:  linear-gradient(to bottom, #c0c0c0, #fdfdfd);
 }
 #mainCenterPane {
     -fx-background-color: #ffffff;
@@ -55,8 +63,9 @@
     -fx-border-radius: 18;
 }
 #loginButton:hover {
-    -fx-background-color: #505050;
+    -fx-background-color: linear-gradient(to bottom, #505050, #707070);
     -fx-font-family: 'Lato';
+    -fx-font-size: 22px;
 }
 #loginButton:focused {
     -fx-border-color: #8cd9f5;
@@ -67,5 +76,5 @@
     -fx-background-radius: 8;
 }
 .toggleButton:hover {
-    -fx-background-color: #505050;
+    -fx-background-color: linear-gradient(to bottom, #505050, #707070);
 }

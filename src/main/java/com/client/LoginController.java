@@ -1,21 +1,21 @@
 package com.client;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
-import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
-import java.util.Collections;
+import java.io.IOException;
 import java.util.Objects;
 
 public class LoginController {
-    @FXML   // Ustawienie podstawowych stylów dla całej sceny
-    protected void initialize(){
-        ScreenController.applyStyle("login.css");
+    @FXML
+    protected void initialize() {
+
     }
 
     @FXML
@@ -31,13 +31,13 @@ public class LoginController {
     @FXML
     Button loginButton;
 
-    @FXML   // Metoda dla logowania się do systemu
-    protected void login(){
-        // Jeżeli jest wciśniete odsłonięcie hasła, użyj odsłonietego pola
-        if(showPasswordButton.isSelected())
+    @FXML   // Metoda dla logowania sie do systemu
+    protected void login() {
+        // Jezeli jest wcisniete odslonięcie hasla, uzyj danych z odslonietego pola
+        if (showPasswordButton.isSelected())
             password.setText(passwordAsText.getText());
 
-        // Jeżeli pola są puste, ustaw error msg i zmień ich border
+        // Jezeli pola sa puste, ustaw error msg i zmien ich border
         if (login.getText().isBlank() || password.getText().isBlank()) {
             errorLabel.setText("Wypełnij wszystkie pola!");
             errorLabel.setVisible(true);
@@ -45,30 +45,38 @@ public class LoginController {
                 login.setBorder(new Border(new BorderStroke(Color.valueOf("#ED8A77"), BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT)));
             else
                 login.setBorder(new Border((new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT))));
+
             if (password.getText().isBlank())
-                if(showPasswordButton.isSelected())
-                    passwordAsText.setBorder(new Border(new BorderStroke(Color.valueOf("#ED8A77"), BorderStrokeStyle.SOLID, new CornerRadii(10),  BorderWidths.DEFAULT)));
+                if (showPasswordButton.isSelected())
+                    passwordAsText.setBorder(new Border(new BorderStroke(Color.valueOf("#ED8A77"), BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT)));
                 else
-                    password.setBorder(new Border(new BorderStroke(Color.valueOf("#ED8A77"), BorderStrokeStyle.SOLID, new CornerRadii(10),  BorderWidths.DEFAULT)));
+                    password.setBorder(new Border(new BorderStroke(Color.valueOf("#ED8A77"), BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT)));
+            else if (showPasswordButton.isSelected())
+                passwordAsText.setBorder(new Border((new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT))));
             else
-                if(showPasswordButton.isSelected())
-                    passwordAsText.setBorder(new Border((new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT))));
-                else
-                    password.setBorder(new Border((new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT))));
+                password.setBorder(new Border((new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT))));
         }
 
-        // Pola są wypełnione
+        // Pola sa wypelnione
         else {
             // Poprawne logowanie
-            if (login.getText().equals("root") && password.getText().equals("root")) {
+            if (DataGetter.checkCredentials(login.getText(), password.getText())) {
                 errorLabel.setVisible(false);
-                login.clear();
                 showPasswordButton.setSelected(false);
                 autoLoginButton.setSelected(false);
+                CurrentSession.setUser(login.getText());
+                try {
+                    if (ScreenController.contains("mainMenu"))
+                        ScreenController.remove("mainMenu");
+                    ScreenController.add("mainMenu", FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/mainMenu.fxml"))));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                login.clear();
                 ScreenController.activate("mainMenu");
             }
 
-            // Blędne logowanie
+            // Bledne logowanie
             else {
                 errorLabel.setText("Błędny login lub hasło!");
                 errorLabel.setVisible(true);
@@ -77,25 +85,33 @@ public class LoginController {
             // Czyszczenie sceny
             login.setBorder(new Border((new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT))));
             password.setBorder(new Border((new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT))));
-            password.clear();
-            passwordAsText.clear();
         }
+        password.clear();
+        passwordAsText.clear();
     }
 
+    @FXML
+    Button exitButton;
 
-    @FXML   // Do odsłaniania hasła
+    @FXML   // Wyjscie z programu
+    protected void exit() {
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
     ImageView showPasswordImg;
     @FXML
     ToggleButton showPasswordButton;
-    @FXML
+
+    @FXML   // Do odslaniania hasla
     protected void showPassword() {
-        if(showPasswordButton.isSelected()) {
+        if (showPasswordButton.isSelected()) {
             showPasswordImg.setImage(new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource("img/eyeB.png")).toString())));
             passwordAsText.setText(password.getText());
             password.setVisible(false);
             passwordAsText.setVisible(true);
-        }
-        else {
+        } else {
             showPasswordImg.setImage(new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource("img/eyeW.png")).toString())));
             password.setText(passwordAsText.getText());
             password.setVisible(true);
@@ -108,22 +124,13 @@ public class LoginController {
     ImageView autoLoginImg;
     @FXML
     ToggleButton autoLoginButton;
+
     @FXML
     protected void autoLogin() {
-        if(autoLoginButton.isSelected())
+        if (autoLoginButton.isSelected())
             autoLoginImg.setImage(new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource("img/tickYes.png")).toString())));
         else
             autoLoginImg.setImage(new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource("img/tickNo.png")).toString())));
-    }
-
-    //---------------------------------------------------
-    @FXML
-    Button mainMenuLogout;
-
-    @FXML
-    protected void logout(){
-        ScreenController.activate("login");
-
     }
 
 }
