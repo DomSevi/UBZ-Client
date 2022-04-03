@@ -5,6 +5,34 @@
     -fx-background-color:   linear-gradient(to bottom, #707070, #505050);
     
 }
+#topMenu {
+    -fx-background-color:  linear-gradient(to bottom, #fdfdfd, #c0c0c0);
+    -fx-background-radius: 8;
+    -fx-border-color: transparent;
+    
+    
+}
+#topMenu:hover {
+    -fx-background-color:  linear-gradient(to bottom, #c0c0c0,#fdfdfd);
+}
+#topMenu > .arrow-button {
+    -fx-padding: 0;
+    -fx-mark-color: transparent;
+}
+
+#topMenu > .arrow-button > .arrow {
+    -fx-padding: 0;
+    -fx-mark-color: transparent;
+}
+.topButton {
+    -fx-background-color:  linear-gradient(to bottom, #fdfdfd, #c0c0c0);
+    -fx-background-radius: 8;
+    -fx-border-color: transparent;
+
+}
+.topButton:hover {
+    -fx-background-color:  linear-gradient(to bottom, #c0c0c0,#fdfdfd);
+}
 #topLogoutLabel {
     /*-fx-background-color:   linear-gradient(to bottom, #505050, #707070);
     -fx-background-radius: 8;
@@ -15,13 +43,4 @@
     -fx-font-size: 18px;
     -fx-text-fill: white;
     
-}
-#logoutButton {
-    -fx-background-color:  linear-gradient(to bottom, #fdfdfd, #c0c0c0);
-    -fx-background-radius: 8;
-    -fx-border-color: transparent;
-
-}
-#logoutButton:hover {
-    -fx-background-color:  linear-gradient(to bottom, #c0c0c0,#fdfdfd);
 }
