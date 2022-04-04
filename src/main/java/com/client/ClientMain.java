@@ -2,19 +2,20 @@ package com.client;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.SceneAntialiasing;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.util.Objects;
 
 
 public class ClientMain extends Application {
+
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -30,27 +31,42 @@ public class ClientMain extends Application {
             mainStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResource("img/appicon.png")).toString()));
             Font.loadFont(getClass().getResourceAsStream("fonts/Lato-Regular.ttf"), 14);
 
+            // Utworzenie domyślnej sceny
+            Scene scene = new Scene(new VBox());
+            AppController.initScene(scene);
 
-            // Zaimportowanie i pokazanie sceny logowania
-            mainStage.setScene(initializeMainScene());
+            // Zaimportowanie sceny logowania
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/login.fxml"));
+            Parent root = loader.load();
+            AppController.addScene("login",root);
+            AppController.loginController = loader.getController();
+
+            // Pokazanie sceny logowania
+            AppController.activateScene("login");
+            mainStage.setScene(scene);
             mainStage.show();
+
+            // Zainicjalizowanie innych scen oraz ich kontrolerow
+            AppController.mainSceneController = prepareScene(MainSceneController.class,"mainScene", "fxml/mainScene.fxml");
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private @NotNull Scene initializeMainScene() {
-        Scene scene = new Scene(new AnchorPane(),1280,720,false, SceneAntialiasing.BALANCED);
-        ScreenController.setScene(scene);
+    // Inicjalizuje sceny oraz zwraca kontroler danej sceny
+    @SuppressWarnings("unchecked")
+    private <T> T prepareScene(Class<T> returnType, String name, String dir) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(dir));
         try {
-            System.setProperty("prism.lcdtext", "false");
-            ScreenController.add("login", FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/login.fxml"))));
-            ScreenController.activate("login");
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
+            Parent root = loader.load();
+            AppController.addScene(name,root);
+            return loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return scene;
+
+        return (T) returnType;
     }
 
 }

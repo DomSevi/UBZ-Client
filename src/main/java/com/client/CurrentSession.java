@@ -1,24 +1,14 @@
 package com.client;
 
-import java.util.ArrayList;
 
 public class CurrentSession {
-    private static ArrayList<String> user = new ArrayList<>();
-
-    public CurrentSession() {
-
-    }
+    private static String userName = null;
 
     protected static void setUser(String login) {
-        if(!user.isEmpty())
-            user.clear();
-        user.add(login);
+        userName = login;
     }
 
     protected static String getUser() {
-        if(!user.isEmpty())
-            return user.get(0);
-        else
-            return null;
+        return userName;
     }
 }

@@ -5,11 +5,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.text.TextAlignment;
 
-public class MainMenuController {
-    @FXML   // Ustawienie potrzebnych rzeczy na startcie
-    protected void initialize() {
+public class MainSceneController {
+
+    protected void currentUser() {
         loggedInAs.setText("Zalogowano jako:\n" + CurrentSession.getUser());
         loggedInAs.setTextAlignment(TextAlignment.CENTER);
+    }
+
+    @FXML   // Ustawienie potrzebnych rzeczy na startcie
+    protected void initialize() {
     }
 
     @FXML
@@ -39,7 +43,7 @@ public class MainMenuController {
     Button logoutButton;
     @FXML   // Wylogowanie
     protected void logout(){
-        ScreenController.activate("login");
+        AppController.activateScene("login");
     }
 
 }
