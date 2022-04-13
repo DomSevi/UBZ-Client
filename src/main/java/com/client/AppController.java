@@ -13,7 +13,7 @@ public class AppController {
     private static HashMap<String, Parent> sceneMap = new HashMap<>();
 
     protected static LoginController loginController;
-    protected static MainSceneController mainSceneController;
+    protected static HomeContoller homeContoller;
 
     static {
         // Stworzenie sceny logowania
@@ -22,7 +22,7 @@ public class AppController {
         AppController.initScene(scene);
 
         // Importowanie dodatkowych scen
-        AppController.mainSceneController = prepareScene("home", "fxml/home.fxml");
+        AppController.homeContoller = prepareScene("home", "fxml/home.fxml");
     }
 
     // Przetwarza scene z pliku fxml oraz zwraca controller danej sceny

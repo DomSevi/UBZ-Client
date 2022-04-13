@@ -61,7 +61,7 @@ public class LoginController {
 
                 // ### Zrobienie automatycznego logowania
                 CurrentSession.setUser(login.getText());
-                AppController.mainSceneController.currentUser();
+                AppController.homeContoller.currentUser();
                 AppController.activateScene("home");
                 AppController.loginController.clearScene();
             }
