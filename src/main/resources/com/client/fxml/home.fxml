@@ -74,7 +74,7 @@
                   <Insets left="10.0" />
                </GridPane.margin>
                <children>
-                  <Button fx:id="usersButton" cancelButton="true" mnemonicParsing="false" onAction="#users" prefHeight="60.0" prefWidth="180.0" styleClass="topButton" text="pracownicy" />
+                  <Button fx:id="empButton" cancelButton="true" mnemonicParsing="false" onAction="#emp" prefHeight="60.0" prefWidth="180.0" styleClass="topButton" text="pracownicy" />
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
                </children>
             </Pane>
@@ -104,8 +104,9 @@
    </top>
     <center>
         <Pane>
-            <fx:include source="homeSubPanes/subHome.fxml" fx:id="subHome"/>
-            <fx:include source="homeSubPanes/subRooms.fxml" fx:id="subRooms"/>
+            <fx:include fx:id="subHome" source="homeSubPanes/subHome.fxml" />
+            <fx:include fx:id="subRooms" source="homeSubPanes/subRooms.fxml" />
+            <fx:include fx:id="subEmp" source="homeSubPanes/subEmp.fxml" />
         </Pane>
     </center>
 </BorderPane>

@@ -14,50 +14,68 @@ public class HomeContoller {
         loggedInAs.setTextAlignment(TextAlignment.CENTER);
     }
 
-    @FXML   // Ustawienie potrzebnych rzeczy na startcie
+    @FXML   // Ustawienie potrzebnych rzeczy na starcie
     protected void initialize() {
-        // Ukrycie niepotrzebnych 'stron' programu
-        subRooms.setVisible(false);
+        // Ustawienie strony
+        setPage('h');
     }
 
     @FXML
     private GridPane subHome;
-
-    protected static SubHomeController subHomeController;
     @FXML
     private GridPane subRooms;
-
-    protected static  SubRoomsController subRoomsController;
-
-
     @FXML
+    private GridPane subEmp;
+    protected static  SubRoomsController subRoomsController;
+    protected static SubHomeController subHomeController;
+    protected static SubEmpController subEmpController;
+
+    public void setPage(char c ) {
+        if(c == 'h') {
+            subHome.setVisible(true);
+            subRooms.setVisible(false);
+            subEmp.setVisible(false);
+        }
+        else if(c == 'r'){
+            subHome.setVisible(false);
+            subRooms.setVisible(true);
+            subEmp.setVisible(false);
+        }
+        else if(c == 'e') {
+            subHome.setVisible(false);
+            subRooms.setVisible(false);
+            subEmp.setVisible(true);
+        }
+    }
+
+    @FXML   // Obsluga przyskow gornych zmieniajacych podstrone strony home
     BorderPane mainPane;
     @FXML
     Button homeButton;
     @FXML
     protected void home() {
         if(!subHome.isVisible()){
-            subHome.setVisible(true);
-            subRooms.setVisible(false);
+            subHomeController.clear();
+            setPage('h');
         }
     }
-
     @FXML
     Button roomsButton;
     @FXML
     protected void rooms() {
         if(!subRooms.isVisible()){
             subRoomsController.clear();
-            subRooms.setVisible(true);
-            subHome.setVisible(false);
+            setPage('r');
         }
     }
-
     @FXML
-    Button usersButton;
+    Button empButton;
     @FXML
-    protected void users() {
-
+    protected void emp() {
+        if(!subEmp.isVisible()){
+            subEmpController.clear();
+            setPage('e');
+        }
     }
 
     @FXML
