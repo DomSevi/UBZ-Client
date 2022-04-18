@@ -1,14 +1,15 @@
-package com.client;
+package com.client.controllers;
 
 import javafx.fxml.FXML;
 
-public class SubEmpController {
+public class SubHomeController {
     @FXML
     protected void initialize() {
         // Ustawia swoj controller w statycznym polu rodzica
-        HomeContoller.subEmpController = this;
+        HomeContoller.subHomeController = this;
     }
-    protected void clear() {
+
+    public void clear() {
 
     }
 }

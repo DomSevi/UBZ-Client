@@ -1,5 +1,6 @@
-package com.client;
+package com.client.controllers;
 
+import com.client.ClientMain;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,7 +10,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class AppController {
-    protected static Scene mainScene;
+    public static Scene mainScene;
     private static HashMap<String, Parent> sceneMap = new HashMap<>();
 
     protected static LoginController loginController;

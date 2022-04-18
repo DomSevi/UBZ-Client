@@ -1,5 +1,6 @@
 package com.client;
 
+import com.client.controllers.AppController;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;

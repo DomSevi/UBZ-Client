@@ -1,5 +1,6 @@
-package com.client;
+package com.client.controllers;
 
+import com.client.CurrentSession;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,7 +10,7 @@ import javafx.scene.text.TextAlignment;
 
 public class HomeContoller {
 
-    protected void currentUser() {
+    public void setLoggedInUser() {
         loggedInAs.setText("Zalogowano jako:\n" + CurrentSession.getUser());
         loggedInAs.setTextAlignment(TextAlignment.CENTER);
     }
@@ -26,11 +27,11 @@ public class HomeContoller {
     private GridPane subRooms;
     @FXML
     private GridPane subEmp;
-    protected static  SubRoomsController subRoomsController;
-    protected static SubHomeController subHomeController;
-    protected static SubEmpController subEmpController;
+    public static SubRoomsController subRoomsController;
+    public static SubHomeController subHomeController;
+    public static SubEmpController subEmpController;
 
-    public void setPage(char c ) {
+    private void setPage(char c ) {
         if(c == 'h') {
             subHome.setVisible(true);
             subRooms.setVisible(false);
@@ -85,6 +86,9 @@ public class HomeContoller {
     @FXML   // Wylogowanie
     protected void logout(){
         // ### wyczyscic wszystko
+        subHomeController.clear();
+        subRoomsController.clear();
+        subEmpController.clear();
         AppController.activateScene("login");
     }
 

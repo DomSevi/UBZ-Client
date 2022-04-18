@@ -1,9 +1,8 @@
-package com.client;
+package com.client.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 
 public class SubRoomsController {
     @FXML
@@ -11,7 +10,7 @@ public class SubRoomsController {
         // Ustawia swoj controller w statycznym polu rodzica
         HomeContoller.subRoomsController = this;
     }
-    protected void clear() {
+    public void clear() {
         testText.clear();
     }
 

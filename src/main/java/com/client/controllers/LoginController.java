@@ -1,5 +1,8 @@
-package com.client;
+package com.client.controllers;
 
+import com.client.CurrentSession;
+import com.client.DataGetter;
+import com.client.controllers.AppController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -61,7 +64,7 @@ public class LoginController {
 
                 // ### Zrobienie automatycznego logowania
                 CurrentSession.setUser(login.getText());
-                AppController.homeContoller.currentUser();
+                AppController.homeContoller.setLoggedInUser();
                 AppController.activateScene("home");
                 AppController.loginController.clearScene();
             }
@@ -109,19 +112,23 @@ public class LoginController {
     }
 
     @FXML
-    ImageView showPasswordImg;
+    ImageView showPasswordImgC;
+    @FXML
+    ImageView showPasswordImgO;
     @FXML
     ToggleButton showPasswordButton;
 
     @FXML   // Do odslaniania hasla
     protected void showPassword() {
         if (showPasswordButton.isSelected()) {
-            showPasswordImg.setImage(new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource("img/eyeB.png")).toString())));
+            showPasswordImgC.setVisible(false);
+            showPasswordImgO.setVisible(true);
             passwordAsText.setText(password.getText());
             password.setVisible(false);
             passwordAsText.setVisible(true);
         } else {
-            showPasswordImg.setImage(new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource("img/eyeW.png")).toString())));
+            showPasswordImgC.setVisible(true);
+            showPasswordImgO.setVisible(false);
             password.setText(passwordAsText.getText());
             password.setVisible(true);
             passwordAsText.setVisible(false);
@@ -130,16 +137,23 @@ public class LoginController {
 
 
     @FXML   // Do pamietania automatycznego logowania
-    ImageView autoLoginImg;
+    ImageView autoLoginImgN;
+    @FXML
+    ImageView autoLoginImgY;
     @FXML
     ToggleButton autoLoginButton;
 
     @FXML
     protected void autoLogin() {
-        if (autoLoginButton.isSelected())
-            autoLoginImg.setImage(new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource("img/tickYes.png")).toString())));
-        else
-            autoLoginImg.setImage(new Image(Objects.requireNonNull(Objects.requireNonNull(getClass().getResource("img/tickNo.png")).toString())));
+        if (autoLoginButton.isSelected()) {
+            autoLoginImgN.setVisible(false);
+            autoLoginImgY.setVisible(true);
+        }
+        else {
+            autoLoginImgN.setVisible(true);
+            autoLoginImgY.setVisible(false);
+        }
+
     }
 
 }
