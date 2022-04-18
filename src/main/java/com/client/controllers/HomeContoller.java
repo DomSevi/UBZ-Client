@@ -1,9 +1,11 @@
 package com.client.controllers;
 
+import com.client.ClientMain;
 import com.client.CurrentSession;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.TextAlignment;
@@ -47,6 +49,16 @@ public class HomeContoller {
             subRooms.setVisible(false);
             subEmp.setVisible(true);
         }
+    }
+
+    @FXML
+    protected void fullscreen() {
+        if(!ClientMain.mainStage.isFullScreen()) {
+            ClientMain.mainStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+            ClientMain.mainStage.setFullScreen(true);
+        }
+        else
+            ClientMain.mainStage.setFullScreen(false);
     }
 
     @FXML   // Obsluga przyskow gornych zmieniajacych podstrone strony home

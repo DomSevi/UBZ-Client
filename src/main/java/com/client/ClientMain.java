@@ -19,12 +19,16 @@ import java.util.Objects;
 
 public class ClientMain extends Application {
 
+    public static Stage mainStage;
+
     public static void main(String[] args) {
         Application.launch(args);
     }
 
     @Override
-    public void start(Stage mainStage) {
+    public void start(Stage stage) {
+        // Zapewnienie dostepu do glownego okna
+        mainStage = stage;
         // Ustawianie najważniejszych opcji okna
         mainStage.setTitle("XYZ");
         mainStage.setMinWidth(800);

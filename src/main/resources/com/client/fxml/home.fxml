@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane id="mainPane" fx:id="mainPane" maxHeight="2160.0" maxWidth="3840.0" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/mainMenu.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.client.controllers.HomeContoller">
+<BorderPane id="mainPane" fx:id="mainPane" maxHeight="2160.0" maxWidth="3840.0" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/home.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.client.controllers.HomeContoller">
    <top>
       <GridPane id="topGridPane" minHeight="80.0" prefHeight="80.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -34,11 +37,18 @@
                   <Insets left="10.0" />
                </GridPane.margin>
                <children>
-                  <MenuButton id="topMenu" maxHeight="60.0" maxWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0">
+                  <MenuButton id="topMenu" focusTraversable="false" maxHeight="60.0" maxWidth="60.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0">
                     <items>
+                        <RadioMenuItem mnemonicParsing="false" onAction="#fullscreen" text="Fullscreen">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="F11" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></RadioMenuItem>
                       <MenuItem mnemonicParsing="false" text="Action 1" />
                       <MenuItem mnemonicParsing="false" text="Action 2" />
                     </items>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </MenuButton>
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -52,7 +62,10 @@
                   <Insets left="10.0" />
                </GridPane.margin>
                <children>
-                  <Button fx:id="homeButton" cancelButton="true" mnemonicParsing="false" onAction="#home" prefHeight="60.0" prefWidth="60.0" styleClass="topButton" />
+                  <Button fx:id="homeButton" focusTraversable="false" mnemonicParsing="false" onAction="#home" prefHeight="60.0" prefWidth="60.0" styleClass="topButton">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/home.png" />
@@ -62,7 +75,10 @@
             </Pane>
             <Pane maxHeight="60.0" maxWidth="180.0" prefHeight="60.0" prefWidth="180.0" GridPane.columnIndex="2">
                <children>
-                  <Button fx:id="roomsButton" cancelButton="true" mnemonicParsing="false" onAction="#rooms" prefHeight="60.0" prefWidth="180.0" styleClass="topButton" text="pokoje i klasy" />
+                  <Button fx:id="roomsButton" focusTraversable="false" mnemonicParsing="false" onAction="#rooms" prefHeight="60.0" prefWidth="180.0" styleClass="topButton" text="pokoje i klasy">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
                </children>
                <GridPane.margin>
@@ -74,7 +90,10 @@
                   <Insets left="10.0" />
                </GridPane.margin>
                <children>
-                  <Button fx:id="empButton" cancelButton="true" mnemonicParsing="false" onAction="#emp" prefHeight="60.0" prefWidth="180.0" styleClass="topButton" text="pracownicy" />
+                  <Button fx:id="empButton" focusTraversable="false" mnemonicParsing="false" onAction="#emp" prefHeight="60.0" prefWidth="180.0" styleClass="topButton" text="pracownicy">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
                </children>
             </Pane>
@@ -88,7 +107,10 @@
             </Label>
             <Pane maxHeight="60.0" maxWidth="60.0" prefHeight="60.0" prefWidth="60.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <children>
-                  <Button fx:id="logoutButton" cancelButton="true" mnemonicParsing="false" onAction="#logout" prefHeight="60.0" prefWidth="60.0" styleClass="topButton" />
+                  <Button fx:id="logoutButton" cancelButton="true" focusTraversable="false" mnemonicParsing="false" onAction="#logout" prefHeight="60.0" prefWidth="60.0" styleClass="topButton">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                   <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="10.0" layoutY="10.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/logout.png" />

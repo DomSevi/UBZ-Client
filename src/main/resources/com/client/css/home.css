@@ -44,3 +44,22 @@
     -fx-text-fill: white;
     
 }
+.context-menu {
+    -fx-background-radius: 8px;
+}
+.menu-item {
+    -fx-padding: 5 5 5 5;
+    -fx-text-fill: black;
+    -fx-background: darkgray ;
+    -fx-background-radius: 8px;
+}
+.menu-item .label{
+    -fx-font-size: 14.0 pt;
+    -fx-text-fill: black;
+}
+.menu-item .label:hover{
+    -fx-font-size: 14.0 pt;
+    -fx-background: #c0c0c0;
+    -fx-text-fill: white;
+}
+
