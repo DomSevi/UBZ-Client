@@ -19,7 +19,9 @@ public class SubEmpController {
         HomeController.subEmpController = this;
         // Inicjalizacja kolumn
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+        firstNameColumn.setMinWidth(50);
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
+        lastNameColumn.setMinWidth(50);
         // Stworzenie listy filtrowanej
         FilteredList<Person> filteredData = new FilteredList<>(masterData, p -> true);
 
@@ -47,7 +49,8 @@ public class SubEmpController {
 
         table.setOnMousePressed(e ->{
             if(e.getClickCount() == 1 && e.isPrimaryButtonDown()) {
-                setSelected(table.getSelectionModel().getSelectedItem());
+                if(table.getSelectionModel().getSelectedItem() != null)
+                    setSelected(table.getSelectionModel().getSelectedItem());
             }
         });
     }

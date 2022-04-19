@@ -35,7 +35,7 @@
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy></TableView>
-      <TextField fx:id="searchFilter" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="32.0" prefWidth="240.0" styleClass="textField" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <TextField fx:id="searchFilter" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="32.0" prefWidth="240.0" promptText="Filter" styleClass="textField" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
       <Label id="personLabel" fx:id="testLabel" text="XYZ" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
       <Label id="mainLabel" prefHeight="50.0" text="Pracownicy" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <GridPane.margin>
