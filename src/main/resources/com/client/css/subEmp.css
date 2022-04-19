@@ -16,6 +16,16 @@
 .textField:focused {
     -fx-border-color: #8cd9f5;
 }
+#resetButton {
+    -fx-background-color:  linear-gradient(to bottom, #fdfdfd, #c0c0c0);
+    -fx-background-radius: 8;
+    -fx-border-color: transparent;
+
+}
+#resetButton:hover {
+    -fx-background-color:  linear-gradient(to bottom, #c0c0c0, #fdfdfd);
+}
+
 .table-view{
     -fx-background-radius: 8px;
 }

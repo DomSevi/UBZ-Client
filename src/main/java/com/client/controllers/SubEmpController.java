@@ -72,6 +72,11 @@ public class SubEmpController {
     @FXML
     TextField searchFilter;
     @FXML
+    protected void resetFilter() {
+        if(!searchFilter.getText().isEmpty())
+            searchFilter.setText("");
+    }
+    @FXML
     TableView<Person> table;
     @FXML
     TableColumn<Person, String> firstNameColumn;

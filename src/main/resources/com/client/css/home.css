@@ -28,10 +28,13 @@
     -fx-background-color:  linear-gradient(to bottom, #fdfdfd, #c0c0c0);
     -fx-background-radius: 8;
     -fx-border-color: transparent;
-
 }
 .topButton:hover {
     -fx-background-color:  linear-gradient(to bottom, #c0c0c0,#fdfdfd);
+}
+.topButtonLabel {
+    -fx-font-family: 'Lato';
+    -fx-font-size: 18px;
 }
 #topLogoutLabel {
     /*-fx-background-color:   linear-gradient(to bottom, #505050, #707070);
