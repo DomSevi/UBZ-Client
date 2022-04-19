@@ -1,0 +1,33 @@
+#leftPane {
+    -fx-background-color:linear-gradient(to bottom, #707070, #505050);
+}
+#mainLabel {
+    -fx-font-family: 'Lato';
+    -fx-font-size: 36px;
+    -fx-text-fill: white;
+}
+.textField {
+    -fx-background-radius: 10;
+    -fx-border-color: #c6c6c6;
+    -fx-border-radius: 10;
+    -fx-font-family: 'Lato';
+    -fx-font-size: 14px;
+}
+.textField:focused {
+    -fx-border-color: #8cd9f5;
+}
+.table-view{
+    -fx-background-radius: 8px;
+}
+.table-column{
+    -fx-background-radius: 8px;
+}
+.column-header-background {
+-fx-background-radius: 8px;
+}
+
+#personLabel {
+    -fx-font-family: 'Lato';
+        -fx-font-size: 40px;
+        -fx-text-fill: #505050;
+}

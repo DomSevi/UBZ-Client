@@ -1,7 +1,7 @@
 #mainPane {
     -fx-background-color:  linear-gradient(to bottom, #fdfdfd, #c0c0c0);
 }
-#topGridPane {
+#topPane {
     -fx-background-color:   linear-gradient(to bottom, #707070, #505050);
     
 }

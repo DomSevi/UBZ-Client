@@ -31,8 +31,10 @@ public class ClientMain extends Application {
         mainStage = stage;
         // Ustawianie najważniejszych opcji okna
         mainStage.setTitle("XYZ");
-        mainStage.setMinWidth(800);
-        mainStage.setMinHeight(650);
+
+
+        mainStage.setMinWidth(1280);
+        mainStage.setMinHeight(740);
         mainStage.initStyle(StageStyle.DECORATED);
 
         // Importowanie czesci zasobow
@@ -42,5 +44,6 @@ public class ClientMain extends Application {
         // Ustalenie glownej sceny i jej pokazanie
         mainStage.setScene(AppController.mainScene);
         mainStage.show();
+
     }
 }

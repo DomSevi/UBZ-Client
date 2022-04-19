@@ -2,16 +2,12 @@ package com.client.controllers;
 
 import com.client.CurrentSession;
 import com.client.DataGetter;
-import com.client.controllers.AppController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
 import javafx.stage.Stage;
-
-import java.util.Objects;
 
 public class LoginController {
 
@@ -64,7 +60,7 @@ public class LoginController {
 
                 // ### Zrobienie automatycznego logowania
                 CurrentSession.setUser(login.getText());
-                AppController.homeContoller.setLoggedInUser();
+                AppController.homeController.setLoggedInUser();
                 AppController.activateScene("home");
                 AppController.loginController.clearScene();
             }

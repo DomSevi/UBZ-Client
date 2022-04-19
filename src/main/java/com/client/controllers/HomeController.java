@@ -6,11 +6,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.TextAlignment;
 
-public class HomeContoller {
+public class HomeController {
 
     public void setLoggedInUser() {
         loggedInAs.setText("Zalogowano jako:\n" + CurrentSession.getUser());
@@ -61,9 +60,8 @@ public class HomeContoller {
             ClientMain.mainStage.setFullScreen(false);
     }
 
-    @FXML   // Obsluga przyskow gornych zmieniajacych podstrone strony home
-    BorderPane mainPane;
-    @FXML
+
+    @FXML // Obsluga przyskow gornych zmieniajacych podstrone strony home
     Button homeButton;
     @FXML
     protected void home() {
