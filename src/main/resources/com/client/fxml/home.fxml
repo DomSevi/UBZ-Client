@@ -142,9 +142,9 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <fx:include fx:id="subHome" source="homeSubPanes/subHome.fxml" />
-            <fx:include fx:id="subRooms" source="homeSubPanes/subRooms.fxml" />
-            <fx:include fx:id="subEmp" source="homeSubPanes/subEmp.fxml" />
+            <fx:include fx:id="homeHome" source="homeSubPanes/homeHome.fxml" />
+            <fx:include fx:id="homeRooms" source="homeSubPanes/homeRooms.fxml" />
+            <fx:include fx:id="homeEmp" source="homeSubPanes/homeEmp.fxml" />
          </children>
       </GridPane>
    </children>

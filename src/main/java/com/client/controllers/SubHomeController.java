@@ -6,7 +6,7 @@ public class SubHomeController {
     @FXML
     protected void initialize() {
         // Ustawia swoj controller w statycznym polu rodzica
-        HomeController.subHomeController = this;
+        HomeController.homeHomeController = this;
     }
 
     public void clear() {

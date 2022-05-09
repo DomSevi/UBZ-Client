@@ -23,6 +23,7 @@ public class AppController {
         AppController.initScene(scene);
 
         // Importowanie dodatkowych scen
+            // home.fxml zawiera w sobie podsceny np. homeEmp i sa one ładowane w poniższej linii
         AppController.homeController = prepareScene("home", "fxml/home.fxml");
     }
 
@@ -40,12 +41,12 @@ public class AppController {
     }
 
     // Ustala glowna scene, uzywana tylko przy starcie programu
-    protected static void initScene(Scene scene) {
+    private static void initScene(Scene scene) {
         AppController.mainScene = scene;
     }
 
     // Dodanie sceny do mapy scen
-    protected static void addScene(String name, Parent p) {
+    private static void addScene(String name, Parent p) {
         sceneMap.put(name, p);
     }
 

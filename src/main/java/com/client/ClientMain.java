@@ -13,7 +13,7 @@ import java.util.Objects;
  * ClientMain ustala tylko najwazniejsze opcje glownego okna,
  * oraz importuje pare zasobow takich jak czcionki czy ikony.
  *
- * AppController zawiera wszyskie sceny, controllery oraz pola potrzebne do pracy programu,
+ * AppController wczytuje wszyskie sceny, zawiera controllery oraz pola potrzebne do pracy programu,
  * pozwala on rowniez na zmiane scen oraz wywolywanie potrzebnych metod z konkretnych controllerow
  */
 
@@ -27,12 +27,10 @@ public class ClientMain extends Application {
 
     @Override
     public void start(Stage stage) {
-        // Zapewnienie dostepu do glownego okna
+        // Zapewnienie dostepu do glownego okna innym klasom
         mainStage = stage;
         // Ustawianie najważniejszych opcji okna
         mainStage.setTitle("XYZ");
-
-
         mainStage.setMinWidth(1280);
         mainStage.setMinHeight(740);
         mainStage.initStyle(StageStyle.DECORATED);

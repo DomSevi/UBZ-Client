@@ -23,30 +23,30 @@ public class HomeController {
     }
 
     @FXML
-    private GridPane subHome;
+    private GridPane homeHome;
     @FXML
-    private GridPane subRooms;
+    private GridPane homeRooms;
     @FXML
-    private GridPane subEmp;
-    public static SubRoomsController subRoomsController;
-    public static SubHomeController subHomeController;
-    public static SubEmpController subEmpController;
+    private GridPane homeEmp;
+    public static SubRoomsController homeRoomsController;
+    public static SubHomeController homeHomeController;
+    public static SubEmpController homeEmpController;
 
     private void setPage(char c ) {
         if(c == 'h') {
-            subHome.setVisible(true);
-            subRooms.setVisible(false);
-            subEmp.setVisible(false);
+            homeHome.setVisible(true);
+            homeRooms.setVisible(false);
+            homeEmp.setVisible(false);
         }
         else if(c == 'r'){
-            subHome.setVisible(false);
-            subRooms.setVisible(true);
-            subEmp.setVisible(false);
+            homeHome.setVisible(false);
+            homeRooms.setVisible(true);
+            homeEmp.setVisible(false);
         }
         else if(c == 'e') {
-            subHome.setVisible(false);
-            subRooms.setVisible(false);
-            subEmp.setVisible(true);
+            homeHome.setVisible(false);
+            homeRooms.setVisible(false);
+            homeEmp.setVisible(true);
         }
     }
 
@@ -65,8 +65,8 @@ public class HomeController {
     Button homeButton;
     @FXML
     protected void home() {
-        if(!subHome.isVisible()){
-            subHomeController.clear();
+        if(!homeHome.isVisible()){
+            homeHomeController.clear();
             setPage('h');
         }
     }
@@ -74,8 +74,8 @@ public class HomeController {
     Button roomsButton;
     @FXML
     protected void rooms() {
-        if(!subRooms.isVisible()){
-            subRoomsController.clear();
+        if(!homeRooms.isVisible()){
+            homeRoomsController.clear();
             setPage('r');
         }
     }
@@ -83,8 +83,8 @@ public class HomeController {
     Button empButton;
     @FXML
     protected void emp() {
-        if(!subEmp.isVisible()){
-            subEmpController.clear();
+        if(!homeEmp.isVisible()){
+            homeEmpController.clear();
             setPage('e');
         }
     }
@@ -96,9 +96,9 @@ public class HomeController {
     @FXML   // Wylogowanie
     protected void logout(){
         // ### wyczyscic wszystko
-        subHomeController.clear();
-        subRoomsController.clear();
-        subEmpController.clear();
+        homeHomeController.clear();
+        homeRoomsController.clear();
+        homeEmpController.clear();
         AppController.activateScene("login");
     }
 

@@ -11,6 +11,12 @@ import javafx.stage.Stage;
 
 public class LoginController {
 
+    @FXML   // Na starcie programu
+    protected void initialize() {
+
+    }
+
+    // Czyszczenie strony
     protected void clearScene() {
         errorLabel.setVisible(false);
         showPasswordButton.setSelected(false);
@@ -22,8 +28,24 @@ public class LoginController {
         passwordAsText.clear();
     }
 
-    @FXML
-    protected void initialize() {
+    // Koloruje ramki danych logowania kiedy sa one puste
+    private void setCredentialsBorders() {
+        if (login.getText().isBlank())
+            login.setBorder(new Border(new BorderStroke(Color.valueOf("#ED8A77"), BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT)));
+        else
+            login.setBorder(new Border((new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT))));
+
+        if(showPasswordButton.isSelected())
+            if(passwordAsText.getText().isBlank())
+                passwordAsText.setBorder(new Border(new BorderStroke(Color.valueOf("#ED8A77"), BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT)));
+            else
+                passwordAsText.setBorder(new Border((new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT))));
+        else
+            if(password.getText().isBlank())
+                password.setBorder(new Border(new BorderStroke(Color.valueOf("#ED8A77"), BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT)));
+            else
+                password.setBorder(new Border((new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT))));
+
 
     }
 
@@ -80,41 +102,14 @@ public class LoginController {
 
     }
 
-    // Koloruje ramki danych logowania kiedy sa one puste
-    private void setCredentialsBorders() {
-        if (login.getText().isBlank())
-            login.setBorder(new Border(new BorderStroke(Color.valueOf("#ED8A77"), BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT)));
-        else
-            login.setBorder(new Border((new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT))));
-
-        if (password.getText().isBlank())
-            if (showPasswordButton.isSelected())
-                passwordAsText.setBorder(new Border(new BorderStroke(Color.valueOf("#ED8A77"), BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT)));
-            else
-                password.setBorder(new Border(new BorderStroke(Color.valueOf("#ED8A77"), BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT)));
-        else if (showPasswordButton.isSelected())
-            passwordAsText.setBorder(new Border((new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT))));
-        else
-            password.setBorder(new Border((new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT))));
-    }
-
-    @FXML
-    Button exitButton;
-
-    @FXML   // Wyjscie z programu
-    protected void exit() {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
+    @FXML   // Do odslaniania hasla
     ImageView showPasswordImgC;
     @FXML
     ImageView showPasswordImgO;
     @FXML
     ToggleButton showPasswordButton;
 
-    @FXML   // Do odslaniania hasla
+    @FXML
     protected void showPassword() {
         if (showPasswordButton.isSelected()) {
             showPasswordImgC.setVisible(false);
@@ -130,7 +125,6 @@ public class LoginController {
             passwordAsText.setVisible(false);
         }
     }
-
 
     @FXML   // Do pamietania automatycznego logowania
     ImageView autoLoginImgN;
@@ -152,4 +146,12 @@ public class LoginController {
 
     }
 
+    @FXML   // Wyjscie z programu
+    Button exitButton;
+
+    @FXML
+    protected void exit() {
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
+    }
 }

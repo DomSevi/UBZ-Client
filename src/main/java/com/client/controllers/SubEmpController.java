@@ -16,7 +16,7 @@ public class SubEmpController {
     @FXML
     protected void initialize() {
         // Ustawia swoj controller w statycznym polu rodzica
-        HomeController.subEmpController = this;
+        HomeController.homeEmpController = this;
         // Inicjalizacja kolumn
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
         firstNameColumn.setMinWidth(50);

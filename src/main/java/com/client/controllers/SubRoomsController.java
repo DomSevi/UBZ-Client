@@ -8,7 +8,7 @@ public class SubRoomsController {
     @FXML
     protected void initialize() {
         // Ustawia swoj controller w statycznym polu rodzica
-        HomeController.subRoomsController = this;
+        HomeController.homeRoomsController = this;
     }
     public void clear() {
         testText.clear();

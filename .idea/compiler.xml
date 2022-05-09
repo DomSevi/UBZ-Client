@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="UBZ-Client" />
+        <module name="room-management-client" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="UBZ-Client" target="17" />
+      <module name="room-management-client" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
