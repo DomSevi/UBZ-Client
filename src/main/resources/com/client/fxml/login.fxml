@@ -54,7 +54,7 @@
                         <Font size="40.0" />
                      </font>
                   </Label>
-                  <VBox alignment="CENTER" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <VBox alignment="CENTER" focusTraversable="true" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <children>
                         <TextField fx:id="login" accessibleHelp="Wpisz swój login" prefHeight="32.0" promptText="Login" styleClass="textField">
                            <cursor>
@@ -153,7 +153,7 @@
                   </Pane>
                   <HBox maxHeight="33.0" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                      <children>
-                        <Label ellipsisString="Log. Auto." prefHeight="33.0" styleClass="textField" text="Logowanie automatyczne">
+                        <Label alignment="CENTER" ellipsisString="Pam. log." prefHeight="33.0" prefWidth="200.0" styleClass="textField" text="Pamiętaj login">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -169,7 +169,7 @@
                         </Label>
                         <Pane maxHeight="32.0" maxWidth="32.0" prefHeight="32.0" prefWidth="32.0">
                            <children>
-                              <ImageView fx:id="autoLoginImgN" fitHeight="20.0" fitWidth="20.0" layoutX="6.0" layoutY="6.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" style="-fx-view-order: 1;">
+                              <ImageView fx:id="rememberLoginImgN" fitHeight="20.0" fitWidth="20.0" layoutX="6.0" layoutY="6.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" style="-fx-view-order: 1;">
                                  <viewport>
                                     <Rectangle2D />
                                  </viewport>
@@ -177,7 +177,7 @@
                                     <Image url="@../img/tickNo.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="autoLoginImgY" fitHeight="20.0" fitWidth="20.0" layoutX="6.0" layoutY="6.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" style="-fx-view-order: 1;" visible="false">
+                              <ImageView fx:id="rememberLoginImgY" fitHeight="20.0" fitWidth="20.0" layoutX="6.0" layoutY="6.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" style="-fx-view-order: 1;" visible="false">
                                  <viewport>
                                     <Rectangle2D />
                                  </viewport>
@@ -185,7 +185,7 @@
                                     <Image url="@../img/tickYes.png" />
                                  </image>
                               </ImageView>
-                              <ToggleButton fx:id="autoLoginButton" focusTraversable="false" maxHeight="33.0" mnemonicParsing="false" onAction="#autoLogin" prefHeight="32.0" prefWidth="32.0" style="-fx-view-order: 2;" styleClass="toggleButton" />
+                              <ToggleButton fx:id="rememberLoginButton" focusTraversable="false" maxHeight="33.0" mnemonicParsing="false" onAction="#rememberLogin" prefHeight="32.0" prefWidth="32.0" style="-fx-view-order: 2;" styleClass="toggleButton" />
                            </children>
                            <padding>
                               <Insets left="15.0" right="15.0" />

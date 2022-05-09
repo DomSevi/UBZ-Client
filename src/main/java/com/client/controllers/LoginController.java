@@ -9,21 +9,44 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.*;
 import javafx.stage.Stage;
 
+import java.io.*;
+
+
 public class LoginController {
+    private final static String AUTOLOGIN_PATH = "autoLogin.txt";
+
 
     @FXML   // Na starcie programu
     protected void initialize() {
-
+        File file = new File(AUTOLOGIN_PATH);
+        if (file.exists() && file.isFile()) {
+            try {
+                BufferedReader br = new BufferedReader(new FileReader(file));
+                if (br.ready()) {
+                    if (br.readLine().equals("1")) {
+                        login.setText(br.readLine());
+                        rememberLoginButton.setSelected(true);
+                        rememberLoginImgN.setVisible(false);
+                        rememberLoginImgY.setVisible(true);
+                        password.requestFocus();
+                    }
+                }
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     // Czyszczenie strony
     protected void clearScene() {
         errorLabel.setVisible(false);
+
         showPasswordButton.setSelected(false);
         AppController.loginController.showPassword();
-        autoLoginButton.setSelected(false);
-        AppController.loginController.autoLogin();
-        login.clear();
+
+        if (!rememberLoginButton.isSelected())
+            login.clear();
         password.clear();
         passwordAsText.clear();
     }
@@ -35,18 +58,15 @@ public class LoginController {
         else
             login.setBorder(new Border((new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT))));
 
-        if(showPasswordButton.isSelected())
-            if(passwordAsText.getText().isBlank())
+        if (showPasswordButton.isSelected())
+            if (passwordAsText.getText().isBlank())
                 passwordAsText.setBorder(new Border(new BorderStroke(Color.valueOf("#ED8A77"), BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT)));
             else
                 passwordAsText.setBorder(new Border((new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT))));
+        else if (password.getText().isBlank())
+            password.setBorder(new Border(new BorderStroke(Color.valueOf("#ED8A77"), BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT)));
         else
-            if(password.getText().isBlank())
-                password.setBorder(new Border(new BorderStroke(Color.valueOf("#ED8A77"), BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT)));
-            else
-                password.setBorder(new Border((new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT))));
-
-
+            password.setBorder(new Border((new BorderStroke(Color.TRANSPARENT, BorderStrokeStyle.SOLID, new CornerRadii(10), BorderWidths.DEFAULT))));
     }
 
     @FXML
@@ -80,11 +100,52 @@ public class LoginController {
             // Poprawne logowanie
             if (DataGetter.checkCredentials(login.getText(), password.getText())) {
 
-                // ### Zrobienie automatycznego logowania
-                CurrentSession.setUser(login.getText());
+                // Automatyczne logowanie
+                File file = new File(AUTOLOGIN_PATH);
+                // Jezeli plik istnieje
+                if (file.exists() && file.isFile()) {
+                    try {
+                        BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
+                        if (rememberLoginButton.isSelected()) {
+                            bw.write("1");
+                            bw.newLine();
+                            bw.write(login.getText());
+                        } else
+                            bw.write("0");
+                        bw.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                // Jezeli plik nie istnieje oraz jest wcisniety przycisk automatycznego logowania
+                else {
+                    try {
+                        if (rememberLoginButton.isSelected() && file.createNewFile()) {
+                            try {
+                                BufferedWriter bw = new BufferedWriter(new FileWriter(file, false));
+                                bw.write("1");
+                                bw.newLine();
+                                bw.write(login.getText());
+                                bw.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                // Czyszczenie
+                if (CurrentSession.getUserName() != null) {
+                    HomeController.homeWelcomeController.clear();
+                    HomeController.homeRoomsController.clear();
+                    HomeController.homeEmpController.clear();
+                }
+                CurrentSession.setUserName(login.getText());
+
                 AppController.homeController.setLoggedInUser();
                 AppController.activateScene("home");
-                AppController.loginController.clearScene();
             }
 
             // Bledne logowanie
@@ -127,21 +188,20 @@ public class LoginController {
     }
 
     @FXML   // Do pamietania automatycznego logowania
-    ImageView autoLoginImgN;
+    ImageView rememberLoginImgN;
     @FXML
-    ImageView autoLoginImgY;
+    ImageView rememberLoginImgY;
     @FXML
-    ToggleButton autoLoginButton;
+    ToggleButton rememberLoginButton;
 
     @FXML
-    protected void autoLogin() {
-        if (autoLoginButton.isSelected()) {
-            autoLoginImgN.setVisible(false);
-            autoLoginImgY.setVisible(true);
-        }
-        else {
-            autoLoginImgN.setVisible(true);
-            autoLoginImgY.setVisible(false);
+    protected void rememberLogin() {
+        if (rememberLoginButton.isSelected()) {
+            rememberLoginImgN.setVisible(false);
+            rememberLoginImgY.setVisible(true);
+        } else {
+            rememberLoginImgN.setVisible(true);
+            rememberLoginImgY.setVisible(false);
         }
 
     }

@@ -3,14 +3,14 @@ package com.client.data;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Person {
+public class Employee {
     public enum Gender {female, male}
     private final StringProperty firstName;
     private final StringProperty lastName;
     private final Gender gender;
 
 
-    public Person(String firstName, String lastName, Gender gender) {
+    public Employee(String firstName, String lastName, Gender gender) {
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.gender = gender;

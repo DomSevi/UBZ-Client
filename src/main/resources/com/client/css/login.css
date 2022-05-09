@@ -45,7 +45,7 @@
     -fx-font-size: 14px;
 }
 .textField:focused {
-    -fx-border-color: #8cd9f5;
+    -fx-border-color: #c6c6c6;
 }
 #errorLabel {
     -fx-font-family: 'Lato';

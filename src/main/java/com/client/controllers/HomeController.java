@@ -12,14 +12,14 @@ import javafx.scene.text.TextAlignment;
 public class HomeController {
 
     public void setLoggedInUser() {
-        loggedInAs.setText("Zalogowano jako:\n" + CurrentSession.getUser());
+        loggedInAs.setText("Zalogowano jako:\n" + CurrentSession.getUserName());
         loggedInAs.setTextAlignment(TextAlignment.CENTER);
     }
 
     @FXML   // Ustawienie potrzebnych rzeczy na starcie
     protected void initialize() {
         // Ustawienie strony
-        setPage('h');
+        setPage('w');
     }
 
     @FXML
@@ -29,24 +29,30 @@ public class HomeController {
     @FXML
     private GridPane homeEmp;
     public static HomeRoomsController homeRoomsController;
-    public static HomeWelcomeController homeHomeController;
+    public static HomeWelcomeController homeWelcomeController;
     public static HomeEmpController homeEmpController;
 
+    // w - welcome, r - rooms, e - employees
     private void setPage(char c ) {
-        if(c == 'h') {
-            homeHome.setVisible(true);
-            homeRooms.setVisible(false);
-            homeEmp.setVisible(false);
+        try {
+            if (c == 'w') {
+                homeHome.setVisible(true);
+                homeRooms.setVisible(false);
+                homeEmp.setVisible(false);
+            } else if (c == 'r') {
+                homeHome.setVisible(false);
+                homeRooms.setVisible(true);
+                homeEmp.setVisible(false);
+            } else if (c == 'e') {
+                homeHome.setVisible(false);
+                homeRooms.setVisible(false);
+                homeEmp.setVisible(true);
+            }
+            else
+                throw new IllegalArgumentException("Wrong argument: " + c);
         }
-        else if(c == 'r'){
-            homeHome.setVisible(false);
-            homeRooms.setVisible(true);
-            homeEmp.setVisible(false);
-        }
-        else if(c == 'e') {
-            homeHome.setVisible(false);
-            homeRooms.setVisible(false);
-            homeEmp.setVisible(true);
+        catch(IllegalArgumentException e) {
+            System.err.println(e.getMessage());
         }
     }
 
@@ -65,16 +71,16 @@ public class HomeController {
     Button homeButton;
     @FXML
     protected void home() {
-        if(!homeHome.isVisible()){
-            homeHomeController.clear();
-            setPage('h');
+        if(!homeHome.isVisible()) {
+            homeWelcomeController.clear();
+            setPage('w');
         }
     }
     @FXML
     Button roomsButton;
     @FXML
     protected void rooms() {
-        if(!homeRooms.isVisible()){
+        if(!homeRooms.isVisible()) {
             homeRoomsController.clear();
             setPage('r');
         }
@@ -83,7 +89,7 @@ public class HomeController {
     Button empButton;
     @FXML
     protected void emp() {
-        if(!homeEmp.isVisible()){
+        if(!homeEmp.isVisible()) {
             homeEmpController.clear();
             setPage('e');
         }
@@ -96,9 +102,11 @@ public class HomeController {
     @FXML   // Wylogowanie
     protected void logout(){
         // ### wyczyscic wszystko
-        homeHomeController.clear();
-        homeRoomsController.clear();
-        homeEmpController.clear();
+        if(!homeHome.isVisible()) {
+            setPage('w');
+        }
+        AppController.loginController.clearScene();
+
         AppController.activateScene("login");
     }
 
