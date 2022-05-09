@@ -142,7 +142,7 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <fx:include fx:id="homeHome" source="homeSubPanes/homeHome.fxml" />
+            <fx:include fx:id="homeHome" source="homeSubPanes/homeWelcome.fxml" />
             <fx:include fx:id="homeRooms" source="homeSubPanes/homeRooms.fxml" />
             <fx:include fx:id="homeEmp" source="homeSubPanes/homeEmp.fxml" />
          </children>

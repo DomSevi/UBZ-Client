@@ -11,7 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class SubEmpController {
+public class HomeEmpController {
 
     @FXML
     protected void initialize() {
@@ -84,7 +84,7 @@ public class SubEmpController {
     TableColumn<Person, String> lastNameColumn;
     private ObservableList<Person> masterData = FXCollections.observableArrayList();
 
-    public SubEmpController() {
+    public HomeEmpController() {
         masterData.add(new Person("Dominik", "Sobieraj",Person.Gender.male));
         masterData.add(new Person("Piotr", "Nowak", Person.Gender.male));
         masterData.add(new Person("Patryk", "Wow", Person.Gender.male));

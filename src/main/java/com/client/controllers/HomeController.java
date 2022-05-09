@@ -28,9 +28,9 @@ public class HomeController {
     private GridPane homeRooms;
     @FXML
     private GridPane homeEmp;
-    public static SubRoomsController homeRoomsController;
-    public static SubHomeController homeHomeController;
-    public static SubEmpController homeEmpController;
+    public static HomeRoomsController homeRoomsController;
+    public static HomeWelcomeController homeHomeController;
+    public static HomeEmpController homeEmpController;
 
     private void setPage(char c ) {
         if(c == 'h') {

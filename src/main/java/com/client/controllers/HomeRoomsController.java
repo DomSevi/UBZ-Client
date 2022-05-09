@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class SubRoomsController {
+public class HomeRoomsController {
     @FXML
     protected void initialize() {
         // Ustawia swoj controller w statycznym polu rodzica
