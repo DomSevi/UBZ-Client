@@ -1,6 +1,8 @@
 package com.client.controllers;
 
-import com.client.data.Employee;
+import com.client.conn.employee.Employee;
+import com.client.conn.employee.EmployeeConv;
+import com.client.data.EmployeeClient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -10,6 +12,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
+import java.util.List;
 
 public class HomeEmpController {
 
@@ -23,26 +28,26 @@ public class HomeEmpController {
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
         lastNameColumn.setMinWidth(50);
         // Stworzenie listy filtrowanej
-        FilteredList<Employee> filteredData = new FilteredList<>(masterData, p -> true);
+        FilteredList<EmployeeClient> filteredData = new FilteredList<>(masterData, p -> true);
 
         // Ustawienie sluchacza(?) na pole tekstowe oraz ustalenie jak maja byc filtrowane dane
-        searchFilter.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(employee -> {
+        searchFilter.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(employeeClient -> {
             // Jezeli pole tekstowe jest puste to wyswietl wszystko
             if(newValue == null || newValue.isEmpty()) {
                 return true;
             }
             // Porownanie imienia i nazwiska z polem tekstowym
             String lowerCaseFilter = newValue.toLowerCase();
-            if(employee.getFirstName().toLowerCase().contains(lowerCaseFilter))
+            if(employeeClient.getFirstName().toLowerCase().contains(lowerCaseFilter))
                 return true;
-            else if(employee.getLastName().toLowerCase().contains(lowerCaseFilter))
+            else if(employeeClient.getLastName().toLowerCase().contains(lowerCaseFilter))
                 return true;
 
             return false;
         }));
 
         // Utworznie listy sortowanej
-        SortedList<Employee> sortedList = new SortedList<>(filteredData);
+        SortedList<EmployeeClient> sortedList = new SortedList<>(filteredData);
         // Zbindowanie tableview razem z sortowana lista
         sortedList.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sortedList);
@@ -59,9 +64,9 @@ public class HomeEmpController {
     }
     @FXML
     Label testLabel;
-    private void setSelected(Employee p) {
+    private void setSelected(EmployeeClient p) {
         StringBuilder sb = new StringBuilder("Pan");
-        if(p.getGender() == Employee.Gender.female)
+        if(p.getGender() == EmployeeClient.Gender.female)
             sb.append("i");
         sb.append(" ");
         sb.append(p.getFirstName());
@@ -77,20 +82,24 @@ public class HomeEmpController {
             searchFilter.setText("");
     }
     @FXML
-    TableView<Employee> table;
+    TableView<EmployeeClient> table;
     @FXML
-    TableColumn<Employee, String> firstNameColumn;
+    TableColumn<EmployeeClient, String> firstNameColumn;
     @FXML
-    TableColumn<Employee, String> lastNameColumn;
-    private ObservableList<Employee> masterData = FXCollections.observableArrayList();
+    TableColumn<EmployeeClient, String> lastNameColumn;
+    private ObservableList<EmployeeClient> masterData = FXCollections.observableArrayList();
 
     public HomeEmpController() {
-        masterData.add(new Employee("Dominik", "Sobieraj", Employee.Gender.male));
-        masterData.add(new Employee("Piotr", "Nowak", Employee.Gender.male));
-        masterData.add(new Employee("Patryk", "Wow", Employee.Gender.male));
-        masterData.add(new Employee("Anna", "Strzelec", Employee.Gender.female));
+        EmployeeConv employeeConv = new EmployeeConv();
+        try {
+            List<Employee> employees = employeeConv.getAllEmployees();
+            for (Employee e: employees
+            ) {
+                masterData.add(new EmployeeClient(e.getName(),e.getSurname(),EmployeeClient.Gender.female));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
-
 
 }

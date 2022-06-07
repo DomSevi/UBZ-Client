@@ -1,5 +1,7 @@
 package com.client;
 
+import com.client.conn.employee.Employee;
+import com.client.conn.employee.EmployeeConv;
 import com.client.controllers.AppController;
 import javafx.application.Application;
 import javafx.scene.image.Image;
@@ -7,6 +9,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 /*

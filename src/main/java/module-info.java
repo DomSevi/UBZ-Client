@@ -3,6 +3,18 @@ module com.client {
     requires javafx.fxml;
     requires org.jetbrains.annotations;
 
+    requires retrofit2;
+    requires retrofit2.converter.gson;
+    requires okhttp3;
+    requires okio;
+    requires java.sql;
+
+
+    opens com.client.conn.employee;
+    exports com.client.conn.employee;
+    opens com.client.conn.reservation;
+    exports com.client.conn.reservation;
+
 
     opens com.client to javafx.fxml;
     exports com.client;
