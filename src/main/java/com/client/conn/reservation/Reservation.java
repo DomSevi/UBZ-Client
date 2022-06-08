@@ -9,17 +9,6 @@ public class Reservation {
     private Long roomId;
     private Long empId;
 
-    @Override
-    public String toString() {
-        return "Reservation{" +
-                "reservationId=" + reservationId +
-                ", from=" + from +
-                ", to=" + to +
-                ", roomId=" + roomId +
-                ", empId=" + empId +
-                '}';
-    }
-
     public Reservation() {
     }
 
@@ -69,5 +58,16 @@ public class Reservation {
 
     public void setEmpId(Long empId) {
         this.empId = empId;
+    }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "reservationId=" + reservationId +
+                ", from=" + from +
+                ", to=" + to +
+                ", roomId=" + roomId +
+                ", empId=" + empId +
+                '}';
     }
 }

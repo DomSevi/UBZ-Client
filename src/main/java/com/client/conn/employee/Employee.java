@@ -11,13 +11,14 @@ public class Employee {
     private String surname;
     private String job;
     private String serialNumber;
+    private Boolean isMale;
 
     private List<Reservation> reservations;
 
     public Employee() {
     }
 
-    public Employee(Long id, String login, String name, String surname, String job, String serialNumber, List<Reservation> reservations) {
+    public Employee(Long id, String login, String name, String surname, String job, String serialNumber, List<Reservation> reservations, Boolean isMale) {
         this.id = id;
         this.login = login;
         this.name = name;
@@ -25,6 +26,7 @@ public class Employee {
         this.job = job;
         this.serialNumber = serialNumber;
         this.reservations = reservations;
+        this.isMale = isMale;
     }
 
     public Long getId() {
@@ -84,15 +86,24 @@ public class Employee {
         this.reservations = reservations;
     }
 
+    public Boolean getMale() {
+        return isMale;
+    }
+
+    public void setMale(Boolean male) {
+        isMale = male;
+    }
+
     @Override
     public String toString() {
-        return "EmployeeClient{" +
+        return "Employee{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", job='" + job + '\'' +
                 ", serialNumber='" + serialNumber + '\'' +
+                ", isMale=" + isMale +
                 ", reservations=" + reservations +
                 '}';
     }
