@@ -1,5 +1,7 @@
 package com.client;
 
+import com.client.conn.credentials.Credentials;
+import com.client.conn.credentials.CredentialsConv;
 import com.client.conn.employee.Employee;
 import com.client.conn.employee.EmployeeConv;
 import com.client.conn.reservation.Reservation;
@@ -35,6 +37,7 @@ public class ClientMain extends Application {
     @Override
     public void start(Stage stage) {
         EmployeeConv employeeConv = new EmployeeConv();
+        CredentialsConv credentialsConv = new CredentialsConv();
 
         // Zapewnienie dostepu do glownego okna innym klasom
         mainStage = stage;
@@ -55,10 +58,12 @@ public class ClientMain extends Application {
         // some tests and debugging
 
         List<Employee> e;
+        Credentials credentials;
 
         try {
             e = employeeConv.getAllEmployees();
             e.forEach(System.out::println);
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }

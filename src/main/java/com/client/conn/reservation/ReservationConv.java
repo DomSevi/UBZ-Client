@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class ReservationConv {
-    private ReservationAcc reservationAcc = Configuration
+    private final ReservationAcc reservationAcc = Configuration
             .getRetrofit()
             .create(ReservationAcc.class);
 

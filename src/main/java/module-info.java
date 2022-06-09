@@ -14,6 +14,8 @@ module com.client {
     exports com.client.conn.employee;
     opens com.client.conn.reservation;
     exports com.client.conn.reservation;
+    opens com.client.conn.credentials;
+    exports com.client.conn.credentials;
 
 
     opens com.client to javafx.fxml;

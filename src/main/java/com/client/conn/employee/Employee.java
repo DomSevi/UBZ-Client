@@ -18,15 +18,14 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Long id, String login, String name, String surname, String job, String serialNumber, List<Reservation> reservations, Boolean isMale) {
-        this.id = id;
+    public Employee(String login, String name, String surname, String job, String serialNumber, Boolean isMale, List<Reservation> reservations) {
         this.login = login;
         this.name = name;
         this.surname = surname;
         this.job = job;
         this.serialNumber = serialNumber;
-        this.reservations = reservations;
         this.isMale = isMale;
+        this.reservations = reservations;
     }
 
     public Long getId() {
