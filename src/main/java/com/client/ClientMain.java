@@ -36,9 +36,6 @@ public class ClientMain extends Application {
 
     @Override
     public void start(Stage stage) {
-        EmployeeConv employeeConv = new EmployeeConv();
-        CredentialsConv credentialsConv = new CredentialsConv();
-
         // Zapewnienie dostepu do glownego okna innym klasom
         mainStage = stage;
         // Ustawianie najważniejszych opcji okna
@@ -57,16 +54,6 @@ public class ClientMain extends Application {
 
         // some tests and debugging
 
-        List<Employee> e;
-        Credentials credentials;
-
-        try {
-            e = employeeConv.getAllEmployees();
-            e.forEach(System.out::println);
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
 
     }
 }

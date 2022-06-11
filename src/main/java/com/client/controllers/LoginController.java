@@ -1,7 +1,8 @@
 package com.client.controllers;
 
 import com.client.CurrentSession;
-import com.client.DataGetter;
+import com.client.conn.credentials.Credentials;
+import com.client.conn.credentials.CredentialsConv;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -98,7 +99,20 @@ public class LoginController {
         // Pola sa wypelnione
         else {
             // Poprawne logowanie
-            if (DataGetter.checkCredentials(login.getText(), password.getText())) {
+            CredentialsConv cC = new CredentialsConv();
+            Credentials c;
+            boolean logIn = false;
+            try {
+                c = cC.getCredentialsByLogin(login.getText());
+                if(c != null) {
+                    if (password.getText().equals(c.getPassword()))
+                        logIn = true;
+                    CurrentSession.setIsAdmin(c.getAdmin());
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            if (logIn) {
 
                 // Automatyczne logowanie
                 File file = new File(AUTOLOGIN_PATH);
