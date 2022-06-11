@@ -11,9 +11,14 @@ import javafx.scene.text.TextAlignment;
 
 public class HomeController {
 
+    // Used when coming from login scene
     public void setLoggedInUser() {
         loggedInAs.setText("Zalogowano jako:\n" + CurrentSession.getUserName());
         loggedInAs.setTextAlignment(TextAlignment.CENTER);
+        if(CurrentSession.isIsAdmin()) {
+            loggedInAs.setUnderline(true);
+            homeEmpController.table.setEditable(true);
+        }
     }
 
     @FXML   // Ustawienie potrzebnych rzeczy na starcie

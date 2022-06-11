@@ -8,10 +8,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.text.TextAlignment;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,9 +23,16 @@ public class HomeEmpController {
         HomeController.homeEmpController = this;
         // Inicjalizacja kolumn
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+        firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         firstNameColumn.setMinWidth(50);
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
+        lastNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         lastNameColumn.setMinWidth(50);
+        jobColumn.setCellValueFactory(cellData -> cellData.getValue().jobProperty());
+        jobColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        jobColumn.setMinWidth(50);
+
+
         // Stworzenie listy filtrowanej
         FilteredList<EmployeeClient> filteredData = new FilteredList<>(masterData, p -> true);
 
@@ -81,21 +87,66 @@ public class HomeEmpController {
         if(!searchFilter.getText().isEmpty())
             searchFilter.setText("");
     }
+
+    @FXML
+    protected void newEmployee() {
+        if(table.getSelectionModel().getSelectedItem() != null) {
+
+        }
+    }
+    @FXML
+    protected void delEmployee() {
+        if(table.getSelectionModel().getSelectedItem() != null) {
+            EmployeeClient e = table.getSelectionModel().getSelectedItem();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Usunąć " + e.getFirstName() +
+                    " " + e.getLastName() + " ?", ButtonType.YES, ButtonType.NO);
+            alert.setTitle("Potwierdzenie");
+            alert.setHeaderText("Potwierdzenie");
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.YES) {
+                masterData.remove(table.getSelectionModel().getSelectedItem());
+                testLabel.setText("Wybierz osobę z listy");
+                testLabel.setTextAlignment(TextAlignment.CENTER);
+            }
+        }
+    }
+
     @FXML
     TableView<EmployeeClient> table;
     @FXML
     TableColumn<EmployeeClient, String> firstNameColumn;
     @FXML
     TableColumn<EmployeeClient, String> lastNameColumn;
+    @FXML
+    TableColumn<EmployeeClient, String> jobColumn;
     private ObservableList<EmployeeClient> masterData = FXCollections.observableArrayList();
+
+    @FXML
+    public void editFirstName(TableColumn.CellEditEvent<?,?> cEE) {
+        int index = table.getSelectionModel().getSelectedIndex();
+        masterData.get(index).setFirstName((String) cEE.getNewValue());
+    }
+
+    @FXML
+    public void editLastName(TableColumn.CellEditEvent<?,?> cEE) {
+        int index = table.getSelectionModel().getSelectedIndex();
+        masterData.get(index).setLastName((String) cEE.getNewValue());
+    }
+
+    @FXML
+    public void editJob(TableColumn.CellEditEvent<?,?> cEE) {
+        int index = table.getSelectionModel().getSelectedIndex();
+        masterData.get(index).setJob((String) cEE.getNewValue());
+    }
 
     public HomeEmpController() {
         EmployeeConv employeeConv = new EmployeeConv();
         try {
             List<Employee> employees = employeeConv.getAllEmployees();
-            for (Employee e: employees
-            ) {
-                masterData.add(new EmployeeClient(e.getName(),e.getSurname(),EmployeeClient.Gender.female));
+            for (Employee e: employees) {
+                EmployeeClient.Gender g;
+                g = ((e.getMale()) ? EmployeeClient.Gender.male : EmployeeClient.Gender.female);
+                masterData.add(new EmployeeClient(e.getId(), e.getName(), e.getSurname(), e.getJob(), g));
             }
         } catch (IOException e) {
             e.printStackTrace();

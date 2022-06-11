@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -54,6 +55,15 @@ public class ClientMain extends Application {
 
         // some tests and debugging
 
+        EmployeeConv employeeConv = new EmployeeConv();
+        List<Employee> e;
 
+        try {
+            e = employeeConv.getAllEmployees();
+            e.forEach(System.out::println);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }
