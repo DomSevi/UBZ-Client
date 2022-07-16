@@ -7,19 +7,20 @@ import java.util.List;
 
 public interface EmployeeAcc {
 
-    @GET("employees/list")
+    @GET("/employees/list")
     Call<List<Employee>> findAllEmployees();
 
-    @GET("employees/{login}")
+    @GET("/employees/{login}")
     Call<Employee> findEmployeeByLogin(@Path("login") String login);
 
-    @POST("employees/add")
+    @POST("/employees/add")
     Call<Employee> addNewEmployee(@Body Employee newEmployee);
 
     @FormUrlEncoded
-    @PUT("employees/edit/{id}")
-    Call<Employee> editEmployee(@Path("id") Long id, @Field("name") String name, @Field("job") String job);
+    @PUT("/employees/edit/{id}")
+    Call<Employee> editEmployeeById(@Path("id") Long id, @Field("name") String name, @Field("surname") String surname,
+                                    @Field("job") String job);
 
-    @DELETE("employees/delete/{id}")
-    Call<Employee> deleteEmployee(@Path("id") Long id);
+    @DELETE("/employees/delete/{id}")
+    Call<Employee> deleteEmployeeById(@Path("id") Long id);
 }

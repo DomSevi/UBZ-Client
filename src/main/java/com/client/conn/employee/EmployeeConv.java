@@ -6,8 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class EmployeeConv {
-    private final EmployeeAcc employeeAcc = Configuration
-            .getRetrofit()
+    private final EmployeeAcc employeeAcc = Configuration.getRetrofit()
             .create(EmployeeAcc.class);
 
     public List<Employee> getAllEmployees() throws IOException {
@@ -28,14 +27,14 @@ public class EmployeeConv {
                 .body();
     }
 
-    public Employee updateEmployee(Long id, String newName, String newJob) throws IOException {
-        return employeeAcc.editEmployee(id, newName, newJob)
+    public Employee updateEmployeeById(Long id, String newName, String newSurname, String newJob) throws IOException {
+        return employeeAcc.editEmployeeById(id, newName, newSurname, newJob)
                 .execute()
                 .body();
     }
 
-    public Employee removeEmployee(Long id) throws IOException {
-        return employeeAcc.deleteEmployee(id)
+    public Employee removeEmployeeById(Long id) throws IOException {
+        return employeeAcc.deleteEmployeeById(id)
                 .execute()
                 .body();
     }

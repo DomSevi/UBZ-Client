@@ -6,6 +6,8 @@ import com.client.conn.employee.Employee;
 import com.client.conn.employee.EmployeeConv;
 import com.client.conn.reservation.Reservation;
 import com.client.conn.reservation.ReservationConv;
+import com.client.conn.room.Room;
+import com.client.conn.room.RoomConv;
 import com.client.controllers.AppController;
 import javafx.application.Application;
 import javafx.scene.image.Image;
@@ -14,10 +16,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.sql.Date;
 
 /*
  * ClientMain ustala tylko najwazniejsze opcje glownego okna,
@@ -36,7 +38,7 @@ public class ClientMain extends Application {
     }
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage){
         // Zapewnienie dostepu do glownego okna innym klasom
         mainStage = stage;
         // Ustawianie najważniejszych opcji okna
@@ -53,17 +55,42 @@ public class ClientMain extends Application {
         mainStage.setScene(AppController.mainScene);
         mainStage.show();
 
-        // some tests and debugging
+        // testy i debugowanie
+
+        // problem z data (dodawanie rezerwacji - nierozwiazany)
 
         EmployeeConv employeeConv = new EmployeeConv();
-        List<Employee> e;
+        CredentialsConv credentialsConv = new CredentialsConv();
+        ReservationConv reservationConv = new ReservationConv();
+        RoomConv roomConv = new RoomConv();
+
+        List<Employee> employees;
+        List<Credentials> credentials;
+        List<Reservation> reservations;
+        List<Room> rooms;
+
+        Employee e;
+        Credentials c;
+        Reservation re;
+        Room r;
+        Boolean correct;
 
         try {
-            e = employeeConv.getAllEmployees();
-            e.forEach(System.out::println);
-
+            /* jesli uzywamy get***By*** (metode ktora zwraca pojedynczy obiekt, trzeba sprawdzic
+            czy nie jest on nullem bo moze go nie byc w bazie / NullPointerEx
+            e = employeeConv.getEmployeeByLogin("ghost");
+            if(e == null){
+                // wypisz blad
+            }
+            else {
+                // jest ok
+            }
+            */
+            r = roomConv.getRoomByNr(1L);
+            System.out.println(r);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+
     }
 }
