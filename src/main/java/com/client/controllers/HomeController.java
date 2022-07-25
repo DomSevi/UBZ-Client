@@ -21,6 +21,7 @@ public class HomeController {
             homeEmpController.table.setEditable(true);
             homeEmpController.delEmpButton.setDisable(false);
             addEmpButton.setDisable(false);
+            addRoomButton.setDisable(false);
             homeEmpController.lockButton.setDisable(false);
         }
         else {
@@ -28,6 +29,7 @@ public class HomeController {
             homeEmpController.table.setEditable(false);
             homeEmpController.delEmpButton.setDisable(true);
             addEmpButton.setDisable(true);
+            addRoomButton.setDisable(true);
             homeEmpController.lockButton.setDisable(true);
         }
     }
@@ -48,19 +50,23 @@ public class HomeController {
     private GridPane homeAddEmp;
     @FXML
     private GridPane homeSchedule;
+    @FXML
+    private GridPane homeAddRoom;
 
     public static HomeRoomsController homeRoomsController;
     public static HomeWelcomeController homeWelcomeController;
     public static HomeEmpController homeEmpController;
     public static HomeAddEmpController homeAddEmpController;
+    public static HomeAddRoomController homeAddRoomController;
     public static HomeScheduleController homeScheduleController;
 
-    // w - welcome, r - rooms, e - employees
+    // w - welcome, r - rooms, e - employees, a - addemp, b - addroom, s - schedule
     private void setPage(char c ) {
         homeHome.setVisible(false);
         homeRooms.setVisible(false);
         homeEmp.setVisible(false);
         homeAddEmp.setVisible(false);
+        homeAddRoom.setVisible(false);
         homeSchedule.setVisible(false);
         try {
             if (c == 'w') {
@@ -71,6 +77,8 @@ public class HomeController {
                 homeEmp.setVisible(true);
             } else if (c == 'a') {
                 homeAddEmp.setVisible(true);
+            } else if (c == 'b') {
+                homeAddRoom.setVisible(true);
             } else if (c == 's') {
                 homeSchedule.setVisible(true);
             } else
@@ -118,6 +126,15 @@ public class HomeController {
             homeEmpController.clear();
             HomeEmpController.refreshTable();
             setPage('e');
+        }
+    }
+
+    @FXML
+    Button addRoomButton;
+    @FXML
+    public void addRoom() {
+        if(!homeAddRoom.isVisible()) {
+            setPage('b');
         }
     }
 
