@@ -18,6 +18,15 @@ public class Employee {
     public Employee() {
     }
 
+    public Employee(String login, String name, String surname, String job, String serialNumber, Boolean isMale) {
+        this.login = login;
+        this.name = name;
+        this.surname = surname;
+        this.job = job;
+        this.serialNumber = serialNumber;
+        this.isMale = isMale;
+    }
+
     public Employee(String login, String name, String surname, String job, String serialNumber, Boolean isMale, List<Reservation> reservations) {
         this.login = login;
         this.name = name;

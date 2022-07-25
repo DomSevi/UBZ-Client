@@ -5,6 +5,7 @@ import com.client.CurrentSession;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.TextAlignment;
@@ -18,6 +19,8 @@ public class HomeController {
         if(CurrentSession.isIsAdmin()) {
             loggedInAs.setUnderline(true);
             homeEmpController.table.setEditable(true);
+            homeEmpController.delEmpButton.setDisable(false);
+            addEmpButton.setDisable(false);
         }
     }
 
@@ -33,27 +36,36 @@ public class HomeController {
     private GridPane homeRooms;
     @FXML
     private GridPane homeEmp;
+    @FXML
+    private GridPane homeAddEmp;
+    @FXML
+    private GridPane homeSchedule;
+
     public static HomeRoomsController homeRoomsController;
     public static HomeWelcomeController homeWelcomeController;
     public static HomeEmpController homeEmpController;
+    public static HomeAddEmpController homeAddEmpController;
+    public static HomeScheduleController homeScheduleController;
 
     // w - welcome, r - rooms, e - employees
     private void setPage(char c ) {
+        homeHome.setVisible(false);
+        homeRooms.setVisible(false);
+        homeEmp.setVisible(false);
+        homeAddEmp.setVisible(false);
+        homeSchedule.setVisible(false);
         try {
             if (c == 'w') {
                 homeHome.setVisible(true);
-                homeRooms.setVisible(false);
-                homeEmp.setVisible(false);
             } else if (c == 'r') {
-                homeHome.setVisible(false);
                 homeRooms.setVisible(true);
-                homeEmp.setVisible(false);
             } else if (c == 'e') {
-                homeHome.setVisible(false);
-                homeRooms.setVisible(false);
                 homeEmp.setVisible(true);
-            }
-            else
+            } else if (c == 'a') {
+                homeAddEmp.setVisible(true);
+            } else if (c == 's') {
+                homeSchedule.setVisible(true);
+            } else
                 throw new IllegalArgumentException("Wrong argument: " + c);
         }
         catch(IllegalArgumentException e) {
@@ -101,6 +113,15 @@ public class HomeController {
     }
 
     @FXML
+    Button addEmpButton;
+    @FXML
+    public void addEmp() {
+        if(!homeAddEmp.isVisible()) {
+            setPage('a');
+        }
+    }
+
+    @FXML
     Label loggedInAs;
     @FXML
     Button logoutButton;
@@ -114,5 +135,8 @@ public class HomeController {
 
         AppController.activateScene("login");
     }
+
+
+
 
 }

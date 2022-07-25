@@ -86,8 +86,13 @@ public class ClientMain extends Application {
                 // jest ok
             }
             */
-            r = roomConv.getRoomByNr(1L);
-            System.out.println(r);
+
+            employees = employeeConv.getAllEmployees();
+            employees.forEach(System.out::println);
+            //reservations = reservationConv.getAllReservations();
+            //reservations.forEach(System.out::println);
+            //credentials = credentialsConv.getAllCredentials();
+            //credentials.forEach(System.out::println);
         } catch (IOException ex) {
             ex.printStackTrace();
         }

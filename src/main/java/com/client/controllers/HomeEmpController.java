@@ -10,6 +10,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.TextAlignment;
 
 import java.io.IOException;
@@ -21,7 +22,8 @@ public class HomeEmpController {
     protected void initialize() {
         // Ustawia swoj controller w statycznym polu rodzica
         HomeController.homeEmpController = this;
-        // Inicjalizacja kolumn
+
+        // Inicjalizacja kolumn tabeli
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
         firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         firstNameColumn.setMinWidth(50);
@@ -31,7 +33,6 @@ public class HomeEmpController {
         jobColumn.setCellValueFactory(cellData -> cellData.getValue().jobProperty());
         jobColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         jobColumn.setMinWidth(50);
-
 
         // Stworzenie listy filtrowanej
         FilteredList<EmployeeClient> filteredData = new FilteredList<>(masterData, p -> true);
@@ -58,6 +59,7 @@ public class HomeEmpController {
         sortedList.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sortedList);
 
+        // event dla przycisku myszy nad tabelą
         table.setOnMousePressed(e ->{
             if(e.getClickCount() == 1 && e.isPrimaryButtonDown()) {
                 if(table.getSelectionModel().getSelectedItem() != null)
@@ -65,11 +67,13 @@ public class HomeEmpController {
             }
         });
     }
+
     public void clear() {
 
     }
+
     @FXML
-    Label testLabel;
+    Label heading;
     private void setSelected(EmployeeClient p) {
         StringBuilder sb = new StringBuilder("Pan");
         if(p.getGender() == EmployeeClient.Gender.female)
@@ -78,7 +82,7 @@ public class HomeEmpController {
         sb.append(p.getFirstName());
         sb.append(" ");
         sb.append(p.getLastName());
-        testLabel.setText(sb.toString());
+        heading.setText(sb.toString());
     }
     @FXML
     TextField searchFilter;
@@ -87,13 +91,9 @@ public class HomeEmpController {
         if(!searchFilter.getText().isEmpty())
             searchFilter.setText("");
     }
-
     @FXML
-    protected void newEmployee() {
-        if(table.getSelectionModel().getSelectedItem() != null) {
+    Button delEmpButton;
 
-        }
-    }
     @FXML
     protected void delEmployee() {
         if(table.getSelectionModel().getSelectedItem() != null) {
@@ -105,8 +105,8 @@ public class HomeEmpController {
             alert.showAndWait();
             if (alert.getResult() == ButtonType.YES) {
                 masterData.remove(table.getSelectionModel().getSelectedItem());
-                testLabel.setText("Wybierz osobę z listy");
-                testLabel.setTextAlignment(TextAlignment.CENTER);
+                heading.setText("Wybierz osobę z listy");
+                heading.setTextAlignment(TextAlignment.CENTER);
             }
         }
     }
@@ -153,4 +153,6 @@ public class HomeEmpController {
         }
     }
 
+
 }
+

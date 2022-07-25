@@ -21,7 +21,8 @@
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="190.0" prefWidth="190.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="190.0" prefWidth="190.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" prefWidth="200.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="190.0" prefWidth="190.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="80.0" prefWidth="80.0" />
    </columnConstraints>
@@ -30,7 +31,7 @@
       <RowConstraints vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Pane id="topPane" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2147483647" />
+      <Pane id="topPane" prefHeight="80.0" prefWidth="496.0" style="-fx-view-order: 5;" GridPane.columnSpan="2147483647" />
       <Pane maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" prefHeight="60.0" prefWidth="60.0">
          <GridPane.margin>
             <Insets left="10.0" />
@@ -106,10 +107,28 @@
                <image>
                   <Image url="@../img/emp.png" />
                </image></ImageView>
-            <Label layoutX="70.0" layoutY="15.0" maxHeight="-Infinity" minHeight="-Infinity" mouseTransparent="true" prefHeight="30.0" styleClass="topButtonLabel" text="Pracownicy" />
+            <Label layoutX="60.0" layoutY="15.0" maxHeight="-Infinity" minHeight="-Infinity" mouseTransparent="true" prefHeight="30.0" styleClass="topButtonLabel" text="Pracownicy" />
          </children>
       </Pane>
-      <Label id="topLogoutLabel" fx:id="loggedInAs" alignment="CENTER" contentDisplay="CENTER" maxHeight="60.0" minHeight="60.0" minWidth="150.0" prefHeight="60.0" text="Zalogowano jako: &#10;xyz" textAlignment="CENTER" GridPane.columnIndex="5">
+      <Pane maxHeight="60.0" maxWidth="180.0" minHeight="60.0" minWidth="180.0" prefHeight="60.0" prefWidth="180.0" GridPane.columnIndex="4">
+         <children>
+            <Button fx:id="addEmpButton" alignment="CENTER_RIGHT" disable="true" focusTraversable="false" mnemonicParsing="false" onAction="#addEmp" prefHeight="60.0" prefWidth="180.0" styleClass="topButton">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="6.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/newUser.png" />
+               </image>
+            </ImageView>
+            <Label focusTraversable="false" layoutX="60.0" layoutY="15.0" maxHeight="-Infinity" minHeight="-Infinity" mouseTransparent="true" prefHeight="30.0" styleClass="topButtonLabel" text="Nowa osoba" />
+         </children>
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Pane>
+      <Label id="topLogoutLabel" fx:id="loggedInAs" alignment="CENTER" contentDisplay="CENTER" maxHeight="60.0" minHeight="60.0" minWidth="150.0" prefHeight="60.0" text="Zalogowano jako: &#10;xyz" textAlignment="CENTER" GridPane.columnIndex="6">
          <padding>
             <Insets left="5.0" right="5.0" />
          </padding>
@@ -117,7 +136,7 @@
             <Insets left="10.0" />
          </GridPane.margin>
       </Label>
-      <Pane maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" prefHeight="60.0" prefWidth="60.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <Pane maxHeight="60.0" maxWidth="60.0" minHeight="60.0" minWidth="60.0" prefHeight="60.0" prefWidth="60.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <children>
             <Button fx:id="logoutButton" cancelButton="true" focusTraversable="false" mnemonicParsing="false" onAction="#logout" prefHeight="60.0" prefWidth="60.0" styleClass="topButton">
                <cursor>
@@ -145,6 +164,8 @@
             <fx:include fx:id="homeHome" source="homeSubPanes/homeWelcome.fxml" />
             <fx:include fx:id="homeRooms" source="homeSubPanes/homeRooms.fxml" />
             <fx:include fx:id="homeEmp" source="homeSubPanes/homeEmp.fxml" />
+            <fx:include fx:id="homeAddEmp" source="homeSubPanes/homeAddEmp.fxml" />
+            <fx:include fx:id="homeSchedule" source="homeSubPanes/homeSchedule.fxml" />
          </children>
       </GridPane>
    </children>

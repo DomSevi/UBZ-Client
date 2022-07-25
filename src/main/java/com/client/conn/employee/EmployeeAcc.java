@@ -13,8 +13,11 @@ public interface EmployeeAcc {
     @GET("/employees/{login}")
     Call<Employee> findEmployeeByLogin(@Path("login") String login);
 
+
+    //@POST("/employees/add")
+    //Call<Employee> addNewEmployee(@Body Employee newEmployee);
     @POST("/employees/add")
-    Call<Employee> addNewEmployee(@Body Employee newEmployee);
+    Call<Void> addNewEmployee(@Body Employee newEmployee);
 
     @FormUrlEncoded
     @PUT("/employees/edit/{id}")

@@ -21,8 +21,16 @@ public class EmployeeConv {
                 .body();
     }
 
-    public Employee createNewEmployee(Employee newEmployee) throws IOException {
-        return employeeAcc.addNewEmployee(newEmployee)
+    // Stara niedziałajaca wersja
+    //public Employee createNewEmployee(Employee newEmployee) throws IOException {
+    //    return employeeAcc.addNewEmployee(newEmployee)
+    //            .execute()
+    //            .body();
+    //}
+
+    // Nowa bez returna, działa i dodała nam do tabeli na sxtermie
+    public void createNewEmployee(Employee newEmployee) throws IOException {
+        employeeAcc.addNewEmployee(newEmployee)
                 .execute()
                 .body();
     }
