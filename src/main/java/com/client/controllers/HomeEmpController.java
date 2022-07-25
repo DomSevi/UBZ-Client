@@ -111,6 +111,20 @@ public class HomeEmpController {
         }
     }
 
+    public static void refreshTable() {
+        masterData.removeAll(masterData);
+        EmployeeConv employeeConv = new EmployeeConv();
+        try {
+            List<Employee> employees = employeeConv.getAllEmployees();
+            for (Employee e: employees) {
+                EmployeeClient.Gender g;
+                g = ((e.getMale()) ? EmployeeClient.Gender.male : EmployeeClient.Gender.female);
+                masterData.add(new EmployeeClient(e.getId(), e.getName(), e.getSurname(), e.getJob(), g));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     TableView<EmployeeClient> table;
     @FXML
@@ -119,7 +133,7 @@ public class HomeEmpController {
     TableColumn<EmployeeClient, String> lastNameColumn;
     @FXML
     TableColumn<EmployeeClient, String> jobColumn;
-    private ObservableList<EmployeeClient> masterData = FXCollections.observableArrayList();
+    private static ObservableList<EmployeeClient> masterData = FXCollections.observableArrayList();
 
     @FXML
     public void editFirstName(TableColumn.CellEditEvent<?,?> cEE) {
@@ -140,17 +154,7 @@ public class HomeEmpController {
     }
 
     public HomeEmpController() {
-        EmployeeConv employeeConv = new EmployeeConv();
-        try {
-            List<Employee> employees = employeeConv.getAllEmployees();
-            for (Employee e: employees) {
-                EmployeeClient.Gender g;
-                g = ((e.getMale()) ? EmployeeClient.Gender.male : EmployeeClient.Gender.female);
-                masterData.add(new EmployeeClient(e.getId(), e.getName(), e.getSurname(), e.getJob(), g));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        refreshTable();
     }
 
 

@@ -91,8 +91,8 @@ public class ClientMain extends Application {
             employees.forEach(System.out::println);
             //reservations = reservationConv.getAllReservations();
             //reservations.forEach(System.out::println);
-            //credentials = credentialsConv.getAllCredentials();
-            //credentials.forEach(System.out::println);
+            credentials = credentialsConv.getAllCredentials();
+            credentials.forEach(System.out::println);
         } catch (IOException ex) {
             ex.printStackTrace();
         }

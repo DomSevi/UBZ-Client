@@ -17,7 +17,7 @@ public interface CredentialsAcc {
     Call<Boolean> checkCorrectnessOfCredentials(@Path("login") String login, @Path("password") String password);
 
     @POST("/credentials/add")
-    Call<Credentials> addNewCredentials(@Body Credentials newCredentials);
+    Call<Void> addNewCredentials(@Body Credentials newCredentials);
 
     @FormUrlEncoded
     @PUT("/credentials/editPassword/{login}")

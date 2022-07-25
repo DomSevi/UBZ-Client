@@ -27,8 +27,8 @@ public class CredentialsConv {
                 .body();
     }
 
-    public Credentials createNewCredentials(Credentials newCredentials) throws IOException{
-        return credentialsAcc.addNewCredentials(newCredentials)
+    public void createNewCredentials(Credentials newCredentials) throws IOException{
+        credentialsAcc.addNewCredentials(newCredentials)
                 .execute()
                 .body();
     }

@@ -108,6 +108,7 @@ public class HomeController {
     protected void emp() {
         if(!homeEmp.isVisible()) {
             homeEmpController.clear();
+            HomeEmpController.refreshTable();
             setPage('e');
         }
     }

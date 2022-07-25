@@ -1,0 +1,37 @@
+#topPane{
+    -fx-background-color:   linear-gradient(to bottom, #909090, #707070);
+    
+}
+#mainLabel {
+    -fx-font-family: 'Lato';
+    -fx-font-size: 36px;
+    -fx-text-fill: white;
+}
+.formLabel {
+    -fx-font-family: 'Lato';
+    -fx-font-size: 18px;
+}
+
+#acceptButton {
+    -fx-background-color: linear-gradient(to bottom, #707070, #505050);
+    -fx-background-radius: 20;
+    -fx-font-family: 'Lato';
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+    -fx-border-width: 1;
+    -fx-border-radius: 18;
+}
+#acceptButton:hover {
+    -fx-background-color: linear-gradient(to bottom, #505050, #707070);
+    -fx-font-family: 'Lato';
+    -fx-font-size: 22px;
+}
+
+.field {
+    -fx-background-radius: 10;
+    -fx-border-color: #c6c6c6;
+    -fx-border-radius: 10;
+    -fx-font-family: 'Lato';
+    -fx-font-size: 14px;
+}
