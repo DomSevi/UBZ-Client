@@ -35,8 +35,8 @@ public class EmployeeConv {
                 .body();
     }
 
-    public Employee updateEmployeeById(Long id, String newName, String newSurname, String newJob) throws IOException {
-        return employeeAcc.editEmployeeById(id, newName, newSurname, newJob)
+    public void updateEmployeeById(Long id, String newName, String newSurname, String newJob) throws IOException {
+        employeeAcc.editEmployeeById(id, newName, newSurname, newJob)
                 .execute()
                 .body();
     }

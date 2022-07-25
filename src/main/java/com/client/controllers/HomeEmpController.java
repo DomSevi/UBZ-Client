@@ -83,6 +83,13 @@ public class HomeEmpController {
         sb.append(" ");
         sb.append(p.getLastName());
         heading.setText(sb.toString());
+        job.setText(p.getJob());
+        login.setText(p.getLogin());
+        if(p.getGender().equals(EmployeeClient.Gender.male))
+            gender.setText("Mężczyzna");
+        else
+            gender.setText("Kobieta");
+        serialNumber.setText(p.getSerialNumber());
     }
     @FXML
     TextField searchFilter;
@@ -91,6 +98,14 @@ public class HomeEmpController {
         if(!searchFilter.getText().isEmpty())
             searchFilter.setText("");
     }
+
+    @FXML
+    Button refreshButton;
+    @FXML
+    protected void refresh() {
+        refreshTable();
+    }
+
     @FXML
     Button delEmpButton;
 
@@ -119,7 +134,7 @@ public class HomeEmpController {
             for (Employee e: employees) {
                 EmployeeClient.Gender g;
                 g = ((e.getMale()) ? EmployeeClient.Gender.male : EmployeeClient.Gender.female);
-                masterData.add(new EmployeeClient(e.getId(), e.getName(), e.getSurname(), e.getJob(), g));
+                masterData.add(new EmployeeClient(e.getId(), e.getName(), e.getSurname(), e.getJob(), g, e.getLogin(), e.getSerialNumber()));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -135,26 +150,63 @@ public class HomeEmpController {
     TableColumn<EmployeeClient, String> jobColumn;
     private static ObservableList<EmployeeClient> masterData = FXCollections.observableArrayList();
 
+    private void updateEmp() {
+        EmployeeConv ec = new EmployeeConv();
+        try {
+            EmployeeClient e = table.getSelectionModel().getSelectedItem();
+            ec.updateEmployeeById(e.getId(),e.getFirstName(),e.getLastName(),e.getJob());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     @FXML
     public void editFirstName(TableColumn.CellEditEvent<?,?> cEE) {
         int index = table.getSelectionModel().getSelectedIndex();
         masterData.get(index).setFirstName((String) cEE.getNewValue());
+        updateEmp();
     }
 
     @FXML
     public void editLastName(TableColumn.CellEditEvent<?,?> cEE) {
         int index = table.getSelectionModel().getSelectedIndex();
         masterData.get(index).setLastName((String) cEE.getNewValue());
+        updateEmp();
     }
 
     @FXML
     public void editJob(TableColumn.CellEditEvent<?,?> cEE) {
         int index = table.getSelectionModel().getSelectedIndex();
         masterData.get(index).setJob((String) cEE.getNewValue());
+        updateEmp();
     }
 
     public HomeEmpController() {
         refreshTable();
+    }
+
+    @FXML
+    Label job;
+    @FXML
+    Label gender;
+    @FXML
+    Label login;
+    @FXML
+    Label serialNumber;
+
+    @FXML
+    ImageView padlockC;
+    @FXML
+    ImageView padlockO;
+
+    @FXML
+    Button lockButton;
+    @FXML
+    protected void lock() {
+        login.setVisible(!login.isVisible());
+        serialNumber.setVisible(!serialNumber.isVisible());
+        padlockC.setVisible(!padlockC.isVisible());
+        padlockO.setVisible(!padlockO.isVisible());
     }
 
 

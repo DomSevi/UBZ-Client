@@ -21,7 +21,7 @@ public interface EmployeeAcc {
 
     @FormUrlEncoded
     @PUT("/employees/edit/{id}")
-    Call<Employee> editEmployeeById(@Path("id") Long id, @Field("name") String name, @Field("surname") String surname,
+    Call<Void> editEmployeeById(@Path("id") Long id, @Field("name") String name, @Field("surname") String surname,
                                     @Field("job") String job);
 
     @DELETE("/employees/delete/{id}")

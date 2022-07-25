@@ -1,6 +1,12 @@
 #leftPane {
     -fx-background-color:linear-gradient(to bottom, #707070, #505050);
 }
+#infoPane {
+    -fx-background-color:linear-gradient(to bottom, #909090, #707070);
+    -fx-background-radius: 10;
+    -fx-border-color: #c6c6c6;
+    -fx-border-radius: 10;
+}
 #mainLabel {
     -fx-font-family: 'Lato';
     -fx-font-size: 36px;
@@ -16,13 +22,18 @@
 .textField:focused {
     -fx-border-color: #8cd9f5;
 }
-#resetButton {
+.infoField {
+    -fx-text-fill:white;
+    -fx-font-family: 'Lato';
+    -fx-font-size: 18px;
+}
+.resetButton {
     -fx-background-color:  linear-gradient(to bottom, #fdfdfd, #c0c0c0);
     -fx-background-radius: 8;
     -fx-border-color: transparent;
 
 }
-#resetButton:hover {
+.resetButton:hover {
     -fx-background-color:  linear-gradient(to bottom, #c0c0c0, #fdfdfd);
 }
 

@@ -21,6 +21,7 @@ public class HomeController {
             homeEmpController.table.setEditable(true);
             homeEmpController.delEmpButton.setDisable(false);
             addEmpButton.setDisable(false);
+            homeEmpController.lockButton.setDisable(false);
         }
     }
 

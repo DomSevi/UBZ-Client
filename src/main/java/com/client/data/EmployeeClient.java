@@ -10,15 +10,31 @@ public class EmployeeClient {
     private final StringProperty lastName;
     private final StringProperty job;
     private final Gender gender;
+    private final String login;
+    private final String serialNumber;
 
 
 
-    public EmployeeClient(long id, String firstName, String lastName, String job, Gender gender) {
+    public EmployeeClient(long id, String firstName, String lastName, String job, Gender gender, String login,  String serialNumber) {
         this.id = id;
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.job = new SimpleStringProperty(job);
         this.gender = gender;
+        this.login = login;
+        this.serialNumber = serialNumber;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
     }
 
     public String getFirstName() {
