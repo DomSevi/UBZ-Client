@@ -1,5 +1,6 @@
 package com.client.controllers;
 
+import com.client.conn.credentials.CredentialsConv;
 import com.client.conn.employee.Employee;
 import com.client.conn.employee.EmployeeConv;
 import com.client.data.EmployeeClient;
@@ -69,7 +70,15 @@ public class HomeEmpController {
     }
 
     public void clear() {
-
+        isPrivate = true;
+        padlockC.setVisible(true);
+        padlockO.setVisible(false);
+        login.setText("********");
+        serialNumber.setText("********");
+        name.setText("-");
+        surname.setText("-");
+        job.setText("-");
+        gender.setText("-");
     }
 
     @FXML
@@ -83,13 +92,17 @@ public class HomeEmpController {
         sb.append(" ");
         sb.append(p.getLastName());
         heading.setText(sb.toString());
+        name.setText(p.getFirstName());
+        surname.setText(p.getLastName());
         job.setText(p.getJob());
-        login.setText(p.getLogin());
         if(p.getGender().equals(EmployeeClient.Gender.male))
             gender.setText("Mężczyzna");
         else
             gender.setText("Kobieta");
+        if(!isPrivate) {
+        login.setText(p.getLogin());
         serialNumber.setText(p.getSerialNumber());
+        }
     }
     @FXML
     TextField searchFilter;
@@ -119,9 +132,19 @@ public class HomeEmpController {
             alert.setHeaderText("Potwierdzenie");
             alert.showAndWait();
             if (alert.getResult() == ButtonType.YES) {
-                masterData.remove(table.getSelectionModel().getSelectedItem());
                 heading.setText("Wybierz osobę z listy");
                 heading.setTextAlignment(TextAlignment.CENTER);
+                try {
+                    CredentialsConv cc = new CredentialsConv();
+                    EmployeeConv ec = new EmployeeConv();
+                    Employee emp = ec.getEmployeeByLogin(table.getSelectionModel().getSelectedItem().getLogin());
+                    cc.removeCredentialsByLogin(emp.getLogin());
+                    ec.removeEmployeeById(emp.getId());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                masterData.remove(table.getSelectionModel().getSelectedItem());
+                clear();
             }
         }
     }
@@ -186,6 +209,10 @@ public class HomeEmpController {
     }
 
     @FXML
+    Label name;
+    @FXML
+    Label surname;
+    @FXML
     Label job;
     @FXML
     Label gender;
@@ -199,14 +226,28 @@ public class HomeEmpController {
     @FXML
     ImageView padlockO;
 
+    private static boolean isPrivate = true;
     @FXML
     Button lockButton;
     @FXML
     protected void lock() {
-        login.setVisible(!login.isVisible());
-        serialNumber.setVisible(!serialNumber.isVisible());
-        padlockC.setVisible(!padlockC.isVisible());
-        padlockO.setVisible(!padlockO.isVisible());
+        // jezeli jest prywatnosc wlaczona, to ja wylacz i pokaz otwarty zamek
+        if(isPrivate){
+            padlockC.setVisible(false);
+            padlockO.setVisible(true);
+            if(table.getSelectionModel().getSelectedItem() != null){
+                login.setText(table.getSelectionModel().getSelectedItem().getLogin());
+                serialNumber.setText(table.getSelectionModel().getSelectedItem().getSerialNumber());
+            }
+        }
+        else {
+            login.setText("********");
+            serialNumber.setText("********");
+            padlockC.setVisible(true);
+            padlockO.setVisible(false);
+
+        }
+        isPrivate  = !isPrivate;
     }
 
 

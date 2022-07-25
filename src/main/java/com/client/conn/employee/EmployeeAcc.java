@@ -25,5 +25,5 @@ public interface EmployeeAcc {
                                     @Field("job") String job);
 
     @DELETE("/employees/delete/{id}")
-    Call<Employee> deleteEmployeeById(@Path("id") Long id);
+    Call<Void> deleteEmployeeById(@Path("id") Long id);
 }

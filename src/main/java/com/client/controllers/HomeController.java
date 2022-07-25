@@ -23,6 +23,13 @@ public class HomeController {
             addEmpButton.setDisable(false);
             homeEmpController.lockButton.setDisable(false);
         }
+        else {
+            loggedInAs.setUnderline(false);
+            homeEmpController.table.setEditable(false);
+            homeEmpController.delEmpButton.setDisable(true);
+            addEmpButton.setDisable(true);
+            homeEmpController.lockButton.setDisable(true);
+        }
     }
 
     @FXML   // Ustawienie potrzebnych rzeczy na starcie

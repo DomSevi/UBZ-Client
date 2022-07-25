@@ -33,14 +33,14 @@ public class CredentialsConv {
                 .body();
     }
 
-    public Credentials updateCredentialsPasswordByLogin(String login, String newPassword) throws IOException{
-        return credentialsAcc.editCredentialsPasswordByLogin(login, newPassword)
+    public void updateCredentialsPasswordByLogin(String login, String newPassword) throws IOException{
+        credentialsAcc.editCredentialsPasswordByLogin(login, newPassword)
                 .execute()
                 .body();
     }
 
-    public Credentials removeCredentialsByLogin(String login) throws IOException{
-        return credentialsAcc.deleteCredentialsByLogin(login)
+    public void removeCredentialsByLogin(String login) throws IOException{
+        credentialsAcc.deleteCredentialsByLogin(login)
                 .execute()
                 .body();
     }

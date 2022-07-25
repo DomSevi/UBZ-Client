@@ -41,8 +41,8 @@ public class EmployeeConv {
                 .body();
     }
 
-    public Employee removeEmployeeById(Long id) throws IOException {
-        return employeeAcc.deleteEmployeeById(id)
+    public void removeEmployeeById(Long id) throws IOException {
+        employeeAcc.deleteEmployeeById(id)
                 .execute()
                 .body();
     }

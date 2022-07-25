@@ -21,8 +21,8 @@ public interface CredentialsAcc {
 
     @FormUrlEncoded
     @PUT("/credentials/editPassword/{login}")
-    Call<Credentials> editCredentialsPasswordByLogin(@Path("login") String login, @Field("password") String password);
+    Call<Void> editCredentialsPasswordByLogin(@Path("login") String login, @Field("password") String password);
 
     @DELETE("/credentials/delete/{login}")
-    Call<Credentials> deleteCredentialsByLogin(@Path("login") String login);
+    Call<Void> deleteCredentialsByLogin(@Path("login") String login);
 }
