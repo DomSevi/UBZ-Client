@@ -15,6 +15,12 @@ public class Room {
     public Room() {
     }
 
+    public Room(Long level, Long capacity, String type) {
+        this.level = level;
+        this.capacity = capacity;
+        this.type = type;
+    }
+
     public Room(Long level, Long capacity, String type, List<Reservation> reservations) {
         this.level = level;
         this.capacity = capacity;

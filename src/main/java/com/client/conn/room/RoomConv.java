@@ -21,8 +21,8 @@ public class RoomConv {
                 .body();
     }
 
-    public Room createNewRoom(Room room) throws IOException{
-        return roomAcc.addNewRoom(room)
+    public void createNewRoom(Room room) throws IOException{
+        roomAcc.addNewRoom(room)
                 .execute()
                 .body();
     }

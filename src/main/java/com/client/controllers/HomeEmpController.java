@@ -48,10 +48,7 @@ public class HomeEmpController {
             String lowerCaseFilter = newValue.toLowerCase();
             if(employeeClient.getFirstName().toLowerCase().contains(lowerCaseFilter))
                 return true;
-            else if(employeeClient.getLastName().toLowerCase().contains(lowerCaseFilter))
-                return true;
-
-            return false;
+            else return employeeClient.getLastName().toLowerCase().contains(lowerCaseFilter);
         }));
 
         // Utworznie listy sortowanej

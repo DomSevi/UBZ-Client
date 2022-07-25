@@ -16,10 +16,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.sql.Date;
 
 /*
  * ClientMain ustala tylko najwazniejsze opcje glownego okna,
@@ -59,21 +56,21 @@ public class ClientMain extends Application {
 
         // problem z data (dodawanie rezerwacji - nierozwiazany)
 
-        EmployeeConv employeeConv = new EmployeeConv();
+        //EmployeeConv employeeConv = new EmployeeConv();
         CredentialsConv credentialsConv = new CredentialsConv();
-        ReservationConv reservationConv = new ReservationConv();
-        RoomConv roomConv = new RoomConv();
+        //ReservationConv reservationConv = new ReservationConv();
+        //RoomConv roomConv = new RoomConv();
 
-        List<Employee> employees;
+        //List<Employee> employees;
         List<Credentials> credentials;
-        List<Reservation> reservations;
-        List<Room> rooms;
+        //List<Reservation> reservations;
+        //List<Room> rooms;
 
-        Employee e;
-        Credentials c;
-        Reservation re;
-        Room r;
-        Boolean correct;
+        //Employee e;
+        //Credentials c;
+        //Reservation re;
+        //Room r;
+        //Boolean correct;
 
         try {
             /* jesli uzywamy get***By*** (metode ktora zwraca pojedynczy obiekt, trzeba sprawdzic

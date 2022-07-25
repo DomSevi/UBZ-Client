@@ -14,7 +14,7 @@ public interface RoomAcc {
     Call<Room> findRoomByNr(@Path("nr") Long nr);
 
     @POST("/rooms/add")
-    Call<Room> addNewRoom(@Body Room newRoom);
+    Call<Void> addNewRoom(@Body Room newRoom);
 
     @DELETE("/rooms/delete/{nr}")
     Call<Room> deleteRoomByNr(@Path("nr") Long nr);

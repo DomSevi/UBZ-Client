@@ -22,9 +22,6 @@ public class HomeAddEmpController {
         adminChoiceBox.getItems().addAll("Normalny użytkownik", "Admin");
     }
 
-    public void clear() {
-    }
-
     @FXML
     ChoiceBox<String> jobChoiceBox;
     @FXML
@@ -46,7 +43,7 @@ public class HomeAddEmpController {
     @FXML
     PasswordField password;
 
-    protected void clearForm() {
+    protected void clear() {
         name.setText("");
         surname.setText("");
         serialNumber.setText("");
@@ -55,7 +52,7 @@ public class HomeAddEmpController {
         jobChoiceBox.getSelectionModel().select(null);
         genderChoiceBox.getSelectionModel().select(null);
         adminChoiceBox.getSelectionModel().select(null);
-
+        errorLabel.setVisible(false);
     }
     @FXML
     protected void addUser() {
@@ -95,9 +92,9 @@ public class HomeAddEmpController {
                 boolean admin = adminChoiceBox.getSelectionModel().getSelectedItem().equals("Admin");
                 Credentials newCre = new Credentials(newEmp.getId(), newEmp.getLogin(), password.getText(),admin);
                 cc.createNewCredentials(newCre);
+                clear();
                 errorLabel.setText("Dodano pomyślnie!");
                 errorLabel.setVisible(true);
-                clearForm();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
