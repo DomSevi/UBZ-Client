@@ -72,6 +72,11 @@ public class HomeRoomsController {
         roomId.setText("-");
         level.setText("-");
         cap.setText("-");
+        monday.setText("");
+        tuesday.setText("");
+        wednesday.setText("");
+        thursday.setText("");
+        friday.setText("");
     }
 
     @FXML

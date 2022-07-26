@@ -1,5 +1,6 @@
 package com.client.controllers;
 
+import com.client.CurrentSession;
 import com.client.conn.employee.Employee;
 import com.client.conn.employee.EmployeeConv;
 import com.client.conn.reservation.Reservation;
@@ -85,6 +86,7 @@ public class ScheduleController {
     }
 
     public void clear() {
+        errorLabel.setVisible(false);
         mon8.setVisible(false);
         mon10.setVisible(false);
         mon12.setVisible(false);
@@ -134,7 +136,7 @@ public class ScheduleController {
 
     // Funkcja wywoływana gdy wchodzimy na strone rezerwacji
     public void setSchedule(String login, String name, String surname) {
-        addReservationButton.setDisable(false);
+        addReservationButton.setDisable(!CurrentSession.isIsAdmin());
         this.login = login;
         this.name = name;
         this.surname = surname;
@@ -360,6 +362,8 @@ public class ScheduleController {
 
     @FXML
     protected void exit() {
+        HomeController.homeEmpController.clear();
+        HomeController.homeRoomsController.clear();
         AppController.activateScene("home");
     }
 

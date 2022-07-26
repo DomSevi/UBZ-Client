@@ -78,6 +78,11 @@ public class HomeEmpController {
         job.setText("-");
         gender.setText("-");
         heading.setText("Wybierz osobę z listy");
+        monday.setText("");
+        tuesday.setText("");
+        wednesday.setText("");
+        thursday.setText("");
+        friday.setText("");
     }
 
     @FXML
