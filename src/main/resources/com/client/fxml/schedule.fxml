@@ -154,9 +154,9 @@
                   <Insets right="20.0" />
                </GridPane.margin>
             </Button>
-            <TextField fx:id="searchFilter" maxWidth="160.0" prefWidth="40.0" styleClass="field" GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <TextField fx:id="searchFilter" maxWidth="160.0" prefWidth="40.0" styleClass="field" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets right="53.0" />
+                  <Insets left="240.0" />
                </GridPane.margin>
             </TextField>
             <Label fx:id="errorLabel" styleClass="formLabel" text="Label" visible="false" GridPane.columnIndex="6" GridPane.rowIndex="6">
@@ -164,7 +164,7 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </Label>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="32.0" prefWidth="32.0" GridPane.columnIndex="6" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="32.0" prefWidth="32.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                <children>
                   <Button fx:id="resetButton" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" onAction="#resetFilter" prefHeight="32.0" prefWidth="32.0" styleClass="resetButton" />
                   <ImageView fx:id="resetImg" fitHeight="26.0" fitWidth="26.0" layoutX="3.0" layoutY="3.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
@@ -174,9 +174,247 @@
                   </ImageView>
                </children>
                <GridPane.margin>
-                  <Insets right="10.0" />
+                  <Insets left="452.0" />
                </GridPane.margin>
             </Pane>
+            <Label fx:id="Thu8" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="4" GridPane.rowIndex="2">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmThu8" mnemonicParsing="false" onAction="#cmThu8a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="fri8" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="5" GridPane.rowIndex="2">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmFri8" mnemonicParsing="false" onAction="#cmFri8a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="mon10" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmMon10" mnemonicParsing="false" onAction="#cmMon10a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="tue10" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmTue10" mnemonicParsing="false" onAction="#cmTue10a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="wed10" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmWed10" mnemonicParsing="false" onAction="#cmWed10a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="thu10" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="4" GridPane.rowIndex="3">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmThu10" mnemonicParsing="false" onAction="#cmThu10a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="fri10" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="5" GridPane.rowIndex="3">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmFri10" mnemonicParsing="false" onAction="#cmFri10a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="mon12" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmMon12" mnemonicParsing="false" onAction="#cmMon12a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="tue12" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmTue12" mnemonicParsing="false" onAction="#cmTue12a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="wed12" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="3" GridPane.rowIndex="4">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmWed12" mnemonicParsing="false" onAction="#cmWed12a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="thu12" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="4" GridPane.rowIndex="4">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmThu12" mnemonicParsing="false" onAction="#cmThu12a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="fri12" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="5" GridPane.rowIndex="4">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmFri12" mnemonicParsing="false" onAction="#cmFri12a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="mon14" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmMon14" mnemonicParsing="false" onAction="#cmMon14a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="tue14" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmTue14" mnemonicParsing="false" onAction="#cmTue14a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="wed14" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="3" GridPane.rowIndex="5">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmWed14" mnemonicParsing="false" onAction="#cmWed14a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="thu14" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="4" GridPane.rowIndex="5">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmThu14" mnemonicParsing="false" onAction="#cmThu14a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="fri14" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="5" GridPane.rowIndex="5">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmFri14" mnemonicParsing="false" onAction="#cmFri14a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="mon16" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmMon16" mnemonicParsing="false" onAction="#cmMon16a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="tue16" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="2" GridPane.rowIndex="6">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmTue16" mnemonicParsing="false" onAction="#cmTue16a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="wed16" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="3" GridPane.rowIndex="6">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmWed16" mnemonicParsing="false" onAction="#cmWed16a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="thu16" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="4" GridPane.rowIndex="6">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmThu16" mnemonicParsing="false" onAction="#cmThu16a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label fx:id="fri16" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="5" GridPane.rowIndex="6">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmFri16" mnemonicParsing="false" onAction="#cmFri16a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </Label>
+            <Label text="8:00" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="5.0" top="5.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="10:00" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="5.0" top="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="12:00" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="5.0" top="5.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="14:00" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.valignment="TOP">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="5.0" top="5.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="16:00" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="5.0" top="5.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
    </center>

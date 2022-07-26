@@ -4,17 +4,17 @@ import java.util.Date;
 
 public class Reservation {
     private Long reservationId;
-    private Date from;
-    private Date to;
+    private Long day;
+    private Long hour;
     private Long roomId;
     private Long empId;
 
     public Reservation() {
     }
 
-    public Reservation(Date from, Date to, Long roomId, Long empId) {
-        this.from = from;
-        this.to = to;
+    public Reservation(Long day, Long hour, Long roomId, Long empId) {
+        this.day = day;
+        this.hour = hour;
         this.roomId = roomId;
         this.empId = empId;
     }
@@ -27,20 +27,20 @@ public class Reservation {
         this.reservationId = reservationId;
     }
 
-    public Date getFrom() {
-        return from;
+    public Long getDay() {
+        return day;
     }
 
-    public void setFrom(Date from) {
-        this.from = from;
+    public void setDay(Long day) {
+        this.day = day;
     }
 
-    public Date getTo() {
-        return to;
+    public Long getHour() {
+        return hour;
     }
 
-    public void setTo(Date to) {
-        this.to = to;
+    public void setHour(Long hour) {
+        this.hour = hour;
     }
 
     public Long getRoomId() {
@@ -63,8 +63,8 @@ public class Reservation {
     public String toString() {
         return "Reservation{" +
                 "reservationId=" + reservationId +
-                ", from=" + from +
-                ", to=" + to +
+                ", day=" + day +
+                ", hour=" + hour +
                 ", roomId=" + roomId +
                 ", empId=" + empId +
                 '}';

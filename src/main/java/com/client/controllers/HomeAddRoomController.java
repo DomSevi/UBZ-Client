@@ -38,11 +38,14 @@ public class HomeAddRoomController {
     Button acceptButton;
     @FXML
     protected void addRoom() {
-        System.out.println("here");
         //jezeli pola sa puste
         if(capacity.getText().isEmpty() ||
                 level.getText().isEmpty() || type.getText().isEmpty()) {
             errorLabel.setText("Wypełnij wszystkie pola!");
+            errorLabel.setVisible(true);
+        }
+        else if(Integer.parseInt(level.getText()) > 3 || Integer.parseInt(level.getText()) < 0) {
+            errorLabel.setText("Błędna piętro!");
             errorLabel.setVisible(true);
         }
         else {

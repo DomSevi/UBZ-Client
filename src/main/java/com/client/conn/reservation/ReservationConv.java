@@ -21,8 +21,8 @@ public class ReservationConv {
                 .body();
     }
 
-    public Reservation createNewReservation(Reservation newReservation) throws IOException{
-        return reservationAcc.addNewReservation(newReservation)
+    public void createNewReservation(Reservation newReservation) throws IOException{
+        reservationAcc.addNewReservation(newReservation)
                 .execute()
                 .body();
     }

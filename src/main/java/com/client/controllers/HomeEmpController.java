@@ -267,6 +267,7 @@ public class HomeEmpController {
             String scheduleName = table.getSelectionModel().getSelectedItem().getFirstName();
             String scheduleSurname = table.getSelectionModel().getSelectedItem().getLastName();
 
+            AppController.scheduleController.clear();
             AppController.scheduleController.setSchedule(scheduleLogin,scheduleName,scheduleSurname);
             AppController.activateScene("schedule");
         }

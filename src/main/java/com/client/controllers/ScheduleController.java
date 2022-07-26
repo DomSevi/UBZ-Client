@@ -7,6 +7,7 @@ import com.client.conn.reservation.ReservationConv;
 import com.client.conn.room.Room;
 import com.client.conn.room.RoomConv;
 import com.client.data.RoomClient;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -19,11 +20,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
+import java.time.Instant;
+import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class ScheduleController {
     @FXML   // Ustawienie potrzebnych rzeczy na starcie
@@ -82,7 +85,15 @@ public class ScheduleController {
     }
 
     public void clear() {
-
+        mon8.setStyle("-fx-background-color: transparent;");
+        mon8.setText("-");
+        cmMon8.setVisible(false);
+        tue8.setStyle("-fx-background-color: transparent;");
+        tue8.setText("-");
+        cmTue8.setVisible(false);
+        wed8.setStyle("-fx-background-color: transparent;");
+        wed8.setText("-");
+        cmWed8.setVisible(false);
     }
 
     public static void refreshTable() {
@@ -104,11 +115,15 @@ public class ScheduleController {
     }
 
     private String login;
+    private String name;
+    private String surname;
     private List<Integer> listaRez = Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
     // Funkcja wywoływana gdy wchodzimy na strone rezerwacji
     public void setSchedule(String login, String name, String surname) {
         this.login = login;
+        this.name = name;
+        this.surname = surname;
         topLabel.setText("Szczegółowy plan dla " + name + " " + surname);
         try {
             EmployeeConv ec = new EmployeeConv();
@@ -125,42 +140,129 @@ public class ScheduleController {
         topLabel.setText("Szczegółowy plan dla " + type + " na piętrze " + level);
     }
 
-    // DAY - 2 - MONDAY.. 3 4 5 6 - friday
+    // DAY - 1 - monday, ...
+    // HOUr 8 ...
     // Dla kazdej rezerwacji wywoluje funkcji
     private void fillSchedule(List<Reservation> lista, boolean isPerson) {
         for (Reservation r : lista) {
-            Date d = r.getFrom();
-            Calendar c = Calendar.getInstance();
-            c.setTime(d);
-            int day = c.get(Calendar.DAY_OF_WEEK);
-            int hour = c.get(Calendar.HOUR_OF_DAY);
+            Long day = r.getDay();
+            Long hour = r.getHour();
             Long id;
             if (isPerson)
                 id = r.getRoomId();
             else
                 id = r.getEmpId();
-            fillSingle(day, hour, id, isPerson, r.getReservationId().intValue());
+            fillSingle(day.intValue(), hour.intValue(), id, isPerson, r.getReservationId().intValue());
         }
     }
 
     // jezeli isPerson = true, id - id pokoju, isPerson = false, id - id osoby
     private void fillSingle(int day, int hour, Long id, boolean isPerson, int resId) {
-        if (day == 2) {
+        if (day == 0) {
             if (hour == 8) {
                 listaRez.set(0, resId);
                 styleSelected(mon8, id, isPerson,cmMon8);
             }
-        } else if (day == 3) {
+            if (hour == 10) {
+                listaRez.set(1, resId);
+                styleSelected(mon10, id, isPerson,cmMon10);
+            }
+            if (hour == 12) {
+                listaRez.set(2, resId);
+                styleSelected(mon12, id, isPerson,cmMon12);
+            }
+            if (hour == 14) {
+                listaRez.set(3, resId);
+                styleSelected(mon14, id, isPerson,cmMon14);
+            }
+            if (hour == 16) {
+                listaRez.set(4, resId);
+                styleSelected(mon16, id, isPerson,cmMon16);
+            }
+        } else if (day == 1) {
             if (hour == 8) {
                 listaRez.set(5, resId);
                 styleSelected(tue8, id, isPerson,cmTue8);
             }
+            if (hour == 10) {
+                listaRez.set(6, resId);
+                styleSelected(tue10, id, isPerson,cmTue10);
+            }
+            if (hour == 12) {
+                listaRez.set(7, resId);
+                styleSelected(tue12, id, isPerson,cmTue12);
+            }
+            if (hour == 14) {
+                listaRez.set(8, resId);
+                styleSelected(tue14, id, isPerson,cmTue14);
+            }
+            if (hour == 16) {
+                listaRez.set(9, resId);
+                styleSelected(tue16, id, isPerson,cmTue16);
+            }
+        } else if (day == 2) {
+            if (hour == 8) {
+                listaRez.set(10, resId);
+                styleSelected(wed8, id, isPerson,cmWed8);
+            }
+            if (hour == 10) {
+                listaRez.set(11, resId);
+                styleSelected(wed10, id, isPerson,cmWed10);
+            }
+            if (hour == 12) {
+                listaRez.set(12, resId);
+                styleSelected(wed12, id, isPerson,cmWed12);
+            }
+            if (hour == 14) {
+                listaRez.set(13, resId);
+                styleSelected(wed14, id, isPerson,cmWed14);
+            }
+            if (hour == 16) {
+                listaRez.set(14, resId);
+                styleSelected(wed16, id, isPerson,cmWed16);
+            }
+        } else if (day == 3) {
+            if(hour == 8) {
+                listaRez.set(15, resId);
+                styleSelected(thu8, id, isPerson, cmThu8);
+            }
+            if(hour == 10) {
+                listaRez.set(16, resId);
+                styleSelected(thu10, id, isPerson, cmThu10);
+            }
+            if(hour == 12) {
+                listaRez.set(17, resId);
+                styleSelected(thu12, id, isPerson, cmThu12);
+            }
+            if(hour == 14) {
+                listaRez.set(18, resId);
+                styleSelected(thu14, id, isPerson, cmThu14);
+            }
+            if(hour == 16) {
+                listaRez.set(19, resId);
+                styleSelected(thu16, id, isPerson, cmThu16);
+            }
         } else if (day == 4) {
-
-        } else if (day == 5) {
-
-        } else if (day == 6) {
-
+            if(hour == 8) {
+                listaRez.set(20, resId);
+                styleSelected(fri8, id, isPerson, cmFri8);
+            }
+            if(hour == 10) {
+                listaRez.set(21, resId);
+                styleSelected(fri10, id, isPerson, cmFri10);
+            }
+            if(hour == 12) {
+                listaRez.set(22, resId);
+                styleSelected(fri12, id, isPerson, cmFri12);
+            }
+            if(hour == 14) {
+                listaRez.set(23, resId);
+                styleSelected(fri14, id, isPerson, cmFri14);
+            }
+            if(hour == 16) {
+                listaRez.set(24, resId);
+                styleSelected(fri16, id, isPerson, cmFri16);
+            }
         }
     }
 
@@ -181,9 +283,10 @@ public class ScheduleController {
                 else if (level == 1)
                     l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #489ff0, #4872f0);");
                 else if (level == 2)
-                    l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #80d945, #7cf52c);");
-                else if (level == 3)
                     l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #ebd834, #eddf13);");
+                else if (level == 3)
+                    l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #c45c47, #e84220);");
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -239,17 +342,12 @@ public class ScheduleController {
     @FXML
     Button acceptButton;
 
-
-
     @FXML
     ColumnConstraints col6;
-
-
 
     @FXML
     protected void addReservation() {
         if(!addLabel.isVisible()) {
-
             col6.setPercentWidth(40);
             refreshTable();
             addLabel.setVisible(true);
@@ -271,6 +369,8 @@ public class ScheduleController {
             acceptButton.setVisible(false);
             resetButton.setVisible(false);
             resetImg.setVisible(false);
+            hourChoicebox.getSelectionModel().clearSelection();
+            dayChoicebox.getSelectionModel().clearSelection();
         }
     }
 
@@ -289,18 +389,20 @@ public class ScheduleController {
                 RoomConv rc = new RoomConv();
                 Room r = rc.getRoomByNr(Long.parseLong(table.getSelectionModel().getSelectedItem().getId()));
                 List<Reservation> roomList = r.getReservations();
-                //roomList.forEach(res -> System.out.println(res.getFrom()));
-                String myDate = getDate();
-                //System.out.println(myDate);
+                Long myDay = (long) dayChoicebox.getSelectionModel().getSelectedIndex();
+                Long myHour = Long.parseLong(getHour());
                 for (Reservation res: roomList) {
-                    if(res.getFrom().toString().equals(myDate)) {
+                    if(Objects.equals(res.getDay(), myDay) && Objects.equals(res.getHour(), myHour)) {
                         errorLabel.setVisible(true);
                         errorLabel.setText("Wybrana godzina jest już zajęta!");
                         return;
                     }
                 }
                 ReservationConv resC = new ReservationConv();
-                //resC.createNewReservation(new Reservation());
+                EmployeeConv ec = new EmployeeConv();
+                Employee e = ec.getEmployeeByLogin(login);
+                resC.createNewReservation(new Reservation(myDay,myHour,r.getRoomNr(),e.getId()));
+                setSchedule(login,name,surname);
                 col6.setPercentWidth(0);
                 addLabel.setVisible(false);
                 errorLabel.setVisible(false);
@@ -311,8 +413,8 @@ public class ScheduleController {
                 acceptButton.setVisible(false);
                 resetButton.setVisible(false);
                 resetImg.setVisible(false);
-                hourChoicebox.setSelectionModel(null);
-                dayChoicebox.setSelectionModel(null);
+                hourChoicebox.getSelectionModel().clearSelection();
+                dayChoicebox.getSelectionModel().clearSelection();
                 searchFilter.setText("");
             } catch (IOException e) {
                 e.printStackTrace();
@@ -320,47 +422,10 @@ public class ScheduleController {
 
         }
     }
-    private String getDate() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getDay());
-        sb.append(" Jan ");
-        sb.append(getDayInt());
-        sb.append(" ");
-        sb.append(getHour());
-        sb.append(":00:00 CET 2022");
-        return sb.toString();
-    }
-
-    private String getDay() {
-        if(dayChoicebox.getSelectionModel().getSelectedIndex() == 0)
-            return "Mon";
-        if(dayChoicebox.getSelectionModel().getSelectedIndex() == 1)
-            return "Tue";
-        if(dayChoicebox.getSelectionModel().getSelectedIndex() == 2)
-            return "Wed";
-        if(dayChoicebox.getSelectionModel().getSelectedIndex() == 3)
-            return "Thu";
-        if(dayChoicebox.getSelectionModel().getSelectedIndex() == 4)
-            return "Fri";
-        return "Lol";
-    }
-    private String getDayInt() {
-        if(dayChoicebox.getSelectionModel().getSelectedIndex() == 0)
-            return "03";
-        if(dayChoicebox.getSelectionModel().getSelectedIndex() == 1)
-            return "04";
-        if(dayChoicebox.getSelectionModel().getSelectedIndex() == 2)
-            return "05";
-        if(dayChoicebox.getSelectionModel().getSelectedIndex() == 3)
-            return "06";
-        if(dayChoicebox.getSelectionModel().getSelectedIndex() == 4)
-            return "07";
-        return "10";
-    }
 
     private String getHour() {
         if(hourChoicebox.getSelectionModel().getSelectedIndex() == 0)
-            return "08";
+            return "8";
         if(hourChoicebox.getSelectionModel().getSelectedIndex() == 1)
             return "10";
         if(hourChoicebox.getSelectionModel().getSelectedIndex() == 2)
@@ -374,6 +439,8 @@ public class ScheduleController {
 
 
     private void deleteSchedule(int resId, Label l, MenuItem m,int listId) {
+        if(resId == 0)
+            return;
         try {
             ReservationConv rc = new ReservationConv();
             rc.removeReservationByid((long) resId);
@@ -391,30 +458,225 @@ public class ScheduleController {
     Label mon8;
     @FXML
     MenuItem cmMon8;
-
     @FXML
     protected void cmMon8a() {
         deleteSchedule(listaRez.get(0), mon8, cmMon8,0);
     }
 
     @FXML
+    Label mon10;
+    @FXML
+    MenuItem cmMon10;
+    @FXML
+    protected void cmMon10a() {
+        deleteSchedule(listaRez.get(1), mon10, cmMon10,1);
+    }
+
+    @FXML
+    Label mon12;
+    @FXML
+    MenuItem cmMon12;
+    @FXML
+    protected void cmMon12a() {
+        deleteSchedule(listaRez.get(2), mon12, cmMon12,2);
+    }
+
+    @FXML
+    Label mon14;
+    @FXML
+    MenuItem cmMon14;
+    @FXML
+    protected void cmMon14a() {
+        deleteSchedule(listaRez.get(3), mon14, cmMon14,3);
+    }
+
+    @FXML
+    Label mon16;
+    @FXML
+    MenuItem cmMon16;
+    @FXML
+    protected void cmMon16a() {
+        deleteSchedule(listaRez.get(4), mon16, cmMon16,4);
+    }
+
+    @FXML
     Label tue8;
     @FXML
     MenuItem cmTue8;
-
     @FXML
     protected void cmTue8a() {
         deleteSchedule(listaRez.get(5), tue8, cmTue8,5);
     }
 
     @FXML
+    Label tue10;
+    @FXML
+    MenuItem cmTue10;
+    @FXML
+    protected void cmTue10a() {
+        deleteSchedule(listaRez.get(6), tue10, cmTue10,6);
+    }
+
+    @FXML
+    Label tue12;
+    @FXML
+    MenuItem cmTue12;
+    @FXML
+    protected void cmTue12a() {
+        deleteSchedule(listaRez.get(7), tue12, cmTue12,7);
+    }
+
+    @FXML
+    Label tue14;
+    @FXML
+    MenuItem cmTue14;
+    @FXML
+    protected void cmTue14a() {
+        deleteSchedule(listaRez.get(8), tue14, cmTue14,8);
+    }
+
+    @FXML
+    Label tue16;
+    @FXML
+    MenuItem cmTue16;
+    @FXML
+    protected void cmTue16a() {
+        deleteSchedule(listaRez.get(9), tue16, cmTue16,9);
+    }
+
+    @FXML
     Label wed8;
     @FXML
     MenuItem cmWed8;
-
     @FXML
     protected void cmWed8a() {
+        deleteSchedule(listaRez.get(10),wed8,cmWed8, 10);
+    }
 
+    @FXML
+    Label wed10;
+    @FXML
+    MenuItem cmWed10;
+    @FXML
+    protected void cmWed10a() {
+        deleteSchedule(listaRez.get(11),wed10,cmWed10, 11);
+    }
+
+    @FXML
+    Label wed12;
+    @FXML
+    MenuItem cmWed12;
+    @FXML
+    protected void cmWed12a() {
+        deleteSchedule(listaRez.get(12),wed12,cmWed12, 12);
+    }
+
+    @FXML
+    Label wed14;
+    @FXML
+    MenuItem cmWed14;
+    @FXML
+    protected void cmWed14a() {
+        deleteSchedule(listaRez.get(13),wed14,cmWed14, 13);
+    }
+
+    @FXML
+    Label wed16;
+    @FXML
+    MenuItem cmWed16;
+    @FXML
+    protected void cmWed16a() {
+        deleteSchedule(listaRez.get(14),wed16,cmWed16, 14);
+    }
+
+    @FXML
+    Label thu8;
+    @FXML
+    MenuItem cmThu8;
+    @FXML
+    protected void cmThu8a() {
+        deleteSchedule(listaRez.get(15),thu8,cmThu8, 15);
+    }
+
+    @FXML
+    Label thu10;
+    @FXML
+    MenuItem cmThu10;
+    @FXML
+    protected void cmThu10a() {
+        deleteSchedule(listaRez.get(16),thu10,cmThu10, 16);
+    }
+
+    @FXML
+    Label thu12;
+    @FXML
+    MenuItem cmThu12;
+    @FXML
+    protected void cmThu12a() {
+        deleteSchedule(listaRez.get(17),thu12,cmThu12, 17);
+    }
+
+    @FXML
+    Label thu14;
+    @FXML
+    MenuItem cmThu14;
+    @FXML
+    protected void cmThu14a() {
+        deleteSchedule(listaRez.get(18),thu14,cmThu14, 18);
+    }
+
+    @FXML
+    Label thu16;
+    @FXML
+    MenuItem cmThu16;
+    @FXML
+    protected void cmThu16a() {
+        deleteSchedule(listaRez.get(19),thu16,cmThu16, 19);
+    }
+
+    @FXML
+    Label fri8;
+    @FXML
+    MenuItem cmFri8;
+    @FXML
+    protected void cmFri8a() {
+        deleteSchedule(listaRez.get(20),fri8,cmFri8, 20);
+    }
+
+    @FXML
+    Label fri10;
+    @FXML
+    MenuItem cmFri10;
+    @FXML
+    protected void cmFri10a() {
+        deleteSchedule(listaRez.get(21),fri10,cmFri10, 21);
+    }
+
+    @FXML
+    Label fri12;
+    @FXML
+    MenuItem cmFri12;
+    @FXML
+    protected void cmFri12a() {
+        deleteSchedule(listaRez.get(22),fri12,cmFri12, 22);
+    }
+
+    @FXML
+    Label fri14;
+    @FXML
+    MenuItem cmFri14;
+    @FXML
+    protected void cmFri14a() {
+        deleteSchedule(listaRez.get(23),fri14,cmFri14, 23);
+    }
+
+    @FXML
+    Label fri16;
+    @FXML
+    MenuItem cmFri16;
+    @FXML
+    protected void cmFri16a() {
+        deleteSchedule(listaRez.get(24),fri16,cmFri16, 24);
     }
 
 
