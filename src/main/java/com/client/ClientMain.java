@@ -39,7 +39,7 @@ public class ClientMain extends Application {
         // Zapewnienie dostepu do glownego okna innym klasom
         mainStage = stage;
         // Ustawianie najważniejszych opcji okna
-        mainStage.setTitle("XYZ");
+        mainStage.setTitle("Baza zarządzania pokojami");
         mainStage.setMinWidth(1280);
         mainStage.setMinHeight(740);
         mainStage.initStyle(StageStyle.DECORATED);
@@ -56,7 +56,7 @@ public class ClientMain extends Application {
 
         // problem z data (dodawanie rezerwacji - nierozwiazany)
 
-        //EmployeeConv employeeConv = new EmployeeConv();
+        EmployeeConv employeeConv = new EmployeeConv();
         CredentialsConv credentialsConv = new CredentialsConv();
         //ReservationConv reservationConv = new ReservationConv();
         //RoomConv roomConv = new RoomConv();
@@ -66,12 +66,12 @@ public class ClientMain extends Application {
         //List<Reservation> reservations;
         //List<Room> rooms;
 
-        //Employee e;
+        Employee e;
         //Credentials c;
         //Reservation re;
         //Room r;
         //Boolean correct;
-
+        //'2016-06-22 19:10:25-07'
         try {
             /* jesli uzywamy get***By*** (metode ktora zwraca pojedynczy obiekt, trzeba sprawdzic
             czy nie jest on nullem bo moze go nie byc w bazie / NullPointerEx
@@ -83,7 +83,10 @@ public class ClientMain extends Application {
                 // jest ok
             }
             */
-
+            e = employeeConv.getEmployeeByLogin("kamiks");
+            List<Reservation> lista = e.getReservations();
+            lista.forEach(System.out::println);
+            System.out.println();
             //employees = employeeConv.getAllEmployees();
             //employees.forEach(System.out::println);
             //reservations = reservationConv.getAllReservations();

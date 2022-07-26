@@ -262,6 +262,14 @@ public class HomeEmpController {
     Button scheduleButton;
     @FXML
     protected void schedule() {
+        if(table.getSelectionModel().getSelectedItem() != null) {
+            String scheduleLogin = table.getSelectionModel().getSelectedItem().getLogin();
+            String scheduleName = table.getSelectionModel().getSelectedItem().getFirstName();
+            String scheduleSurname = table.getSelectionModel().getSelectedItem().getLastName();
+
+            AppController.scheduleController.setSchedule(scheduleLogin,scheduleName,scheduleSurname);
+            AppController.activateScene("schedule");
+        }
 
     }
 }

@@ -227,7 +227,7 @@
           <RowConstraints maxHeight="-Infinity" minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label id="mainTopLabel" fx:id="topLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="80.0" text="Witaj w XYZ">
+            <Label id="mainTopLabel" fx:id="topLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="80.0" text="Witaj w Bazie zarządzania pokojami!">
                <font>
                   <Font size="40.0" />
                </font>

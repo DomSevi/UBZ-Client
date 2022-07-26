@@ -27,8 +27,8 @@ public class RoomConv {
                 .body();
     }
 
-    public Room removeRoomByNr(Long nr) throws IOException{
-        return roomAcc.deleteRoomByNr(nr)
+    public void removeRoomByNr(Long nr) throws IOException{
+        roomAcc.deleteRoomByNr(nr)
                 .execute()
                 .body();
     }

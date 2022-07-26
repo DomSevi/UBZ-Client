@@ -17,5 +17,5 @@ public interface ReservationAcc {
     Call<Reservation> addNewReservation(@Body Reservation newReservation);
 
     @DELETE("/reservations/delete/{id}")
-    Call<Reservation> deleteReservationById(@Path("id") Long id);
+    Call<Void> deleteReservationById(@Path("id") Long id);
 }

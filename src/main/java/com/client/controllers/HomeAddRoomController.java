@@ -14,6 +14,7 @@ public class HomeAddRoomController {
     protected void initialize() {
         // Ustawia swoj controller w statycznym polu rodzica
         HomeController.homeAddRoomController = this;
+
     }
 
     public void clear() {

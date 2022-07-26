@@ -27,8 +27,8 @@ public class ReservationConv {
                 .body();
     }
 
-    public Reservation removeReservationByid(Long id) throws IOException{
-        return reservationAcc.deleteReservationById(id)
+    public void removeReservationByid(Long id) throws IOException{
+        reservationAcc.deleteReservationById(id)
                 .execute()
                 .body();
     }
