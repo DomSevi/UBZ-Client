@@ -183,7 +183,6 @@
             <fx:include fx:id="homeEmp" source="homeSubPanes/homeEmp.fxml" />
             <fx:include fx:id="homeAddEmp" source="homeSubPanes/homeAddEmp.fxml" />
             <fx:include fx:id="homeAddRoom" source="homeSubPanes/homeAddRoom.fxml" />
-            <fx:include fx:id="homeSchedule" source="homeSubPanes/homeSchedule.fxml" />
          </children>
       </GridPane>
    </children>

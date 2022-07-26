@@ -15,6 +15,7 @@ public class AppController {
 
     protected static LoginController loginController;
     protected static HomeController homeController;
+    protected static ScheduleController scheduleController;
 
     static {
         // Stworzenie sceny logowania
@@ -25,6 +26,7 @@ public class AppController {
         // Importowanie dodatkowych scen
             // home.fxml zawiera w sobie podsceny np. homeEmp i sa one ładowane w poniższej linii
         AppController.homeController = prepareScene("home", "fxml/home.fxml");
+        AppController.scheduleController = prepareScene("schedule", "fxml/schedule.fxml");
     }
 
     // Przetwarza scene z pliku fxml oraz zwraca controller danej sceny

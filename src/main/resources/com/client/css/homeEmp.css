@@ -63,9 +63,14 @@
     -fx-font-size:28px;
     
 }
+#dayHighlightPane {
+    -fx-background-radius: 10;
 
+    -fx-border-radius: 10;
+    -fx-background-color:linear-gradient(to bottom, #707070, #505050);
+}
 #personLabel {
     -fx-font-family: 'Lato';
         -fx-font-size: 40px;
-        -fx-text-fill: #505050;
+        -fx-text-fill: #f0f0f0;
 }

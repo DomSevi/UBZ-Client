@@ -48,8 +48,6 @@ public class HomeController {
     @FXML
     private GridPane homeAddEmp;
     @FXML
-    private GridPane homeSchedule;
-    @FXML
     private GridPane homeAddRoom;
 
     public static HomeRoomsController homeRoomsController;
@@ -57,16 +55,14 @@ public class HomeController {
     public static HomeEmpController homeEmpController;
     public static HomeAddEmpController homeAddEmpController;
     public static HomeAddRoomController homeAddRoomController;
-    public static HomeScheduleController homeScheduleController;
 
-    // w - welcome, r - rooms, e - employees, a - addemp, b - addroom, s - schedule
+    // w - welcome, r - rooms, e - employees, a - addemp, b - addroom
     private void setPage(char c ) {
         homeHome.setVisible(false);
         homeRooms.setVisible(false);
         homeEmp.setVisible(false);
         homeAddEmp.setVisible(false);
         homeAddRoom.setVisible(false);
-        homeSchedule.setVisible(false);
         try {
             if (c == 'w') {
                 homeHome.setVisible(true);
@@ -78,8 +74,6 @@ public class HomeController {
                 homeAddEmp.setVisible(true);
             } else if (c == 'b') {
                 homeAddRoom.setVisible(true);
-            } else if (c == 's') {
-                homeSchedule.setVisible(true);
             } else
                 throw new IllegalArgumentException("Wrong argument: " + c);
         }

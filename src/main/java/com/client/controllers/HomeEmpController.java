@@ -247,6 +247,22 @@ public class HomeEmpController {
         isPrivate  = !isPrivate;
     }
 
+    @FXML
+    Label monday;
+    @FXML
+    Label tuesday;
+    @FXML
+    Label wednesday;
+    @FXML
+    Label thursday;
+    @FXML
+    Label friday;
 
+    @FXML
+    Button scheduleButton;
+    @FXML
+    protected void schedule() {
+
+    }
 }
 
