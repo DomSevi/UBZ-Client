@@ -1,6 +1,7 @@
 package com.client.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 
 public class HomeWelcomeController {
     @FXML
@@ -9,6 +10,10 @@ public class HomeWelcomeController {
         HomeController.homeWelcomeController = this;
     }
 
+    @FXML
+    Label schedule;
+    @FXML
+    Label welcomeLabel;
     public void clear() {
 
     }

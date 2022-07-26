@@ -83,12 +83,14 @@ public class HomeEmpController {
         wednesday.setText("");
         thursday.setText("");
         friday.setText("");
+        errorLabel.setVisible(false);
     }
 
     @FXML
     Label heading;
 
     private void setSelected(EmployeeClient p) {
+        errorLabel.setVisible(false);
         StringBuilder sb = new StringBuilder("Pan");
         if(p.getGender() == EmployeeClient.Gender.female)
             sb.append("i");
@@ -163,6 +165,8 @@ public class HomeEmpController {
 
     @FXML
     Button delEmpButton;
+    @FXML
+    Label errorLabel;
 
     @FXML
     protected void delEmployee() {
@@ -180,6 +184,12 @@ public class HomeEmpController {
                     CredentialsConv cc = new CredentialsConv();
                     EmployeeConv ec = new EmployeeConv();
                     Employee emp = ec.getEmployeeByLogin(table.getSelectionModel().getSelectedItem().getLogin());
+                    if(!emp.getReservations().isEmpty()){
+                        errorLabel.setText("Wybrana osoba ma trwające rezerwacje!");
+                        errorLabel.setVisible(true);
+                        return;
+                    }
+
                     cc.removeCredentialsByLogin(emp.getLogin());
                     ec.removeEmployeeById(emp.getId());
                 } catch (IOException ex) {

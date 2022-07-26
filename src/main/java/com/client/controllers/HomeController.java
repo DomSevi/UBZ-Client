@@ -2,6 +2,11 @@ package com.client.controllers;
 
 import com.client.ClientMain;
 import com.client.CurrentSession;
+import com.client.conn.employee.Employee;
+import com.client.conn.employee.EmployeeConv;
+import com.client.conn.reservation.Reservation;
+import com.client.conn.room.Room;
+import com.client.conn.room.RoomConv;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,12 +14,48 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.TextAlignment;
 
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.List;
+
 public class HomeController {
 
     // Used when coming from login scene
     public void setLoggedInUser() {
         loggedInAs.setText("Zalogowano jako:\n" + CurrentSession.getUserName());
         loggedInAs.setTextAlignment(TextAlignment.CENTER);
+
+
+        try {
+            EmployeeConv ec = new EmployeeConv();
+            RoomConv rc = new RoomConv();
+            Room r;
+            Employee e = ec.getEmployeeByLogin(CurrentSession.getUserName());
+            homeWelcomeController.welcomeLabel.setText("Witaj " +e.getName() + " " + e.getSurname() );
+            List<Reservation> eList = e.getReservations();
+            StringBuilder sb = new StringBuilder();
+            Calendar c = Calendar.getInstance();
+            int day = c.get(Calendar.DAY_OF_WEEK);
+            if(day > 2) day = day - 2;
+            else if (day == 1) day = 6;
+            else day = 5;
+            for (Reservation res : eList) {
+                if(res.getDay().equals((long)day)) {
+                    sb.append(res.getHour());
+                    sb.append(":00-");
+                    sb.append(res.getHour() + 2);
+                    sb.append(":00 w ");
+                    r = rc.getRoomByNr(res.getRoomId());
+                    sb.append(r.getType());
+                    sb.append(".\n");
+                }
+            }
+            homeWelcomeController.schedule.setText(sb.toString());
+            homeWelcomeController.schedule.setStyle("-fx-text-fill:white;-fx-font-size:20px;");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
         if(CurrentSession.isIsAdmin()) {
             loggedInAs.setUnderline(true);
             homeEmpController.table.setEditable(true);

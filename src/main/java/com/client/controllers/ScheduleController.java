@@ -136,7 +136,8 @@ public class ScheduleController {
 
     // Funkcja wywoływana gdy wchodzimy na strone rezerwacji
     public void setSchedule(String login, String name, String surname) {
-        addReservationButton.setDisable(!CurrentSession.isIsAdmin());
+        // jak sie nie jest adminem to wychodzi true
+        addReservationButton.setDisable(!CurrentSession.isIsAdmin() && !login.equals(CurrentSession.getUserName()));
         this.login = login;
         this.name = name;
         this.surname = surname;
