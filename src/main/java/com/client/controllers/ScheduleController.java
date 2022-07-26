@@ -358,6 +358,8 @@ public class ScheduleController {
             acceptButton.setVisible(true);
             resetButton.setVisible(true);
             resetImg.setVisible(true);
+            addResExit.setVisible(true);
+            addRes.setVisible(false);
         }
         else {
             col6.setPercentWidth(0);
@@ -371,8 +373,16 @@ public class ScheduleController {
             resetImg.setVisible(false);
             hourChoicebox.getSelectionModel().clearSelection();
             dayChoicebox.getSelectionModel().clearSelection();
+            addResExit.setVisible(false);
+            addRes.setVisible(true);
+
         }
     }
+
+    @FXML
+    ImageView addRes;
+    @FXML
+    ImageView addResExit;
 
     @FXML
     protected void submitRes() {
@@ -402,17 +412,12 @@ public class ScheduleController {
                 EmployeeConv ec = new EmployeeConv();
                 Employee e = ec.getEmployeeByLogin(login);
                 resC.createNewReservation(new Reservation(myDay,myHour,r.getRoomNr(),e.getId()));
+
+
+                errorLabel.setVisible(true);
+                errorLabel.setText("Dodano pomyślnie!");
+
                 setSchedule(login,name,surname);
-                col6.setPercentWidth(0);
-                addLabel.setVisible(false);
-                errorLabel.setVisible(false);
-                searchFilter.setVisible(false);
-                table.setVisible(false);
-                dayChoicebox.setVisible(false);
-                hourChoicebox.setVisible(false);
-                acceptButton.setVisible(false);
-                resetButton.setVisible(false);
-                resetImg.setVisible(false);
                 hourChoicebox.getSelectionModel().clearSelection();
                 dayChoicebox.getSelectionModel().clearSelection();
                 searchFilter.setText("");
