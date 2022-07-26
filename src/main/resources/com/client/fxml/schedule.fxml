@@ -181,7 +181,7 @@
                   <Insets left="452.0" />
                </GridPane.margin>
             </Pane>
-            <Label fx:id="Thu8" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="4" GridPane.rowIndex="2">
+            <Label fx:id="thu8" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <contextMenu>
                   <ContextMenu>
                      <items>

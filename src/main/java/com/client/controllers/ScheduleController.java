@@ -85,15 +85,32 @@ public class ScheduleController {
     }
 
     public void clear() {
-        mon8.setStyle("-fx-background-color: transparent;");
-        mon8.setText("-");
-        cmMon8.setVisible(false);
-        tue8.setStyle("-fx-background-color: transparent;");
-        tue8.setText("-");
-        cmTue8.setVisible(false);
-        wed8.setStyle("-fx-background-color: transparent;");
-        wed8.setText("-");
-        cmWed8.setVisible(false);
+        mon8.setVisible(false);
+        mon10.setVisible(false);
+        mon12.setVisible(false);
+        mon14.setVisible(false);
+        mon16.setVisible(false);
+        tue8.setVisible(false);
+        tue10.setVisible(false);
+        tue12.setVisible(false);
+        tue14.setVisible(false);
+        tue16.setVisible(false);
+        wed8.setVisible(false);
+        wed10.setVisible(false);
+        wed12.setVisible(false);
+        wed14.setVisible(false);
+        wed16.setVisible(false);
+        thu8.setVisible(false);
+        thu10.setVisible(false);
+        thu12.setVisible(false);
+        thu14.setVisible(false);
+        thu16.setVisible(false);
+        fri8.setVisible(false);
+        fri10.setVisible(false);
+        fri12.setVisible(false);
+        fri14.setVisible(false);
+        fri16.setVisible(false);
+
     }
 
     public static void refreshTable() {
@@ -102,10 +119,6 @@ public class ScheduleController {
         try {
             List<Room> rooms = rc.getAllRooms();
             for (Room r : rooms) {
-                List<Reservation> l = r.getReservations();
-                for (Reservation res : l) {
-
-                }
                 masterData.add(new RoomClient(r.getRoomNr().toString(), r.getLevel().toString(), r.getCapacity().toString(), r.getType()));
             }
 
@@ -121,6 +134,7 @@ public class ScheduleController {
 
     // Funkcja wywoływana gdy wchodzimy na strone rezerwacji
     public void setSchedule(String login, String name, String surname) {
+        addReservationButton.setDisable(false);
         this.login = login;
         this.name = name;
         this.surname = surname;
@@ -133,11 +147,19 @@ public class ScheduleController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void setSchedule(Long id, String type, Long level) {
+        addReservationButton.setDisable(true);
         topLabel.setText("Szczegółowy plan dla " + type + " na piętrze " + level);
+        try {
+            RoomConv rc = new RoomConv();
+            Room r = rc.getRoomByNr(id);
+            List<Reservation> lista = r.getReservations();
+            fillSchedule(lista, false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // DAY - 1 - monday, ...
@@ -271,8 +293,8 @@ public class ScheduleController {
     // cyean -fx-background-color:  linear-gradient(to bottom, #48cfd9, #28e9f7);    0
     // yellolw -fx-background-color:  linear-gradient(to bottom, #80d945, #7cf52c);    2
     private void styleSelected(Label l, Long id, boolean isPerson, MenuItem mi) {
-        mi.setVisible(true);
         if (isPerson) {
+            mi.setVisible(true);
             try {
                 RoomConv rc = new RoomConv();
                 Room r = rc.getRoomByNr(id);
@@ -286,10 +308,44 @@ public class ScheduleController {
                     l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #ebd834, #eddf13);");
                 else if (level == 3)
                     l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #c45c47, #e84220);");
-
+                l.setVisible(true);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        else {
+            mi.setVisible(false);
+            EmployeeConv ec = new EmployeeConv();
+            List<Employee> eList = null;
+            try {
+                eList = ec.getAllEmployees();
+                for (Employee e: eList) {
+                    if(e.getId().equals(id)) {
+                        int level = 0;
+                        if(e.getJob().equals("Magister"))
+                            level = 1;
+                        else if (e.getJob().equals("Doktor"))
+                            level = 2;
+                        else if (e.getJob().equals("Profesor"))
+                            level = 3;
+                        l.setText(e.getName() + " " + e.getSurname());
+                        if (level == 0)
+                            l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #48cfd9, #28e9f7);");
+                        else if (level == 1)
+                            l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #489ff0, #4872f0);");
+                        else if (level == 2)
+                            l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #ebd834, #eddf13);");
+                        else if (level == 3)
+                            l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #c45c47, #e84220);");
+                        l.setVisible(true);
+                        return;
+
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 
@@ -449,8 +505,7 @@ public class ScheduleController {
         try {
             ReservationConv rc = new ReservationConv();
             rc.removeReservationByid((long) resId);
-            l.setStyle("-fx-background-color: transparent;");
-            l.setText("-");
+            l.setVisible(false);
             m.setVisible(false);
             listaRez.set(listId, 0);
         } catch (IOException e) {

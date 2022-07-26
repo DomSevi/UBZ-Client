@@ -3,6 +3,7 @@ package com.client.controllers;
 import com.client.conn.credentials.CredentialsConv;
 import com.client.conn.employee.Employee;
 import com.client.conn.employee.EmployeeConv;
+import com.client.conn.reservation.Reservation;
 import com.client.data.EmployeeClient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -76,10 +77,12 @@ public class HomeEmpController {
         surname.setText("-");
         job.setText("-");
         gender.setText("-");
+        heading.setText("Wybierz osobę z listy");
     }
 
     @FXML
     Label heading;
+
     private void setSelected(EmployeeClient p) {
         StringBuilder sb = new StringBuilder("Pan");
         if(p.getGender() == EmployeeClient.Gender.female)
@@ -99,6 +102,43 @@ public class HomeEmpController {
         if(!isPrivate) {
         login.setText(p.getLogin());
         serialNumber.setText(p.getSerialNumber());
+        }
+
+        EmployeeConv ec = new EmployeeConv();
+        try {
+            Employee e = ec.getEmployeeByLogin(p.getLogin());
+            List<Reservation> list = e.getReservations();
+            StringBuilder mon = new StringBuilder();
+            StringBuilder tue = new StringBuilder();
+            StringBuilder wed = new StringBuilder();
+            StringBuilder thu = new StringBuilder();
+            StringBuilder fri = new StringBuilder();
+            for (Reservation res: list) {
+                switch(res.getDay().intValue()) {
+                    case 0:
+                        mon.append(res.getHour() + ":00 - " + (res.getHour()+2) + ":00\n");
+                        break;
+                    case 1:
+                        tue.append(res.getHour() + ":00 - " + (res.getHour()+2) + ":00\n");
+                        break;
+                    case 2:
+                        wed.append(res.getHour() + ":00 - " + (res.getHour()+2) + ":00\n");
+                        break;
+                    case 3:
+                        thu.append(res.getHour() + ":00 - " + (res.getHour()+2) + ":00\n");
+                        break;
+                    case 4:
+                        fri.append(res.getHour() + ":00 - " + (res.getHour()+2) + ":00\n");
+                        break;
+                }
+            }
+            monday.setText(mon.toString());
+            tuesday.setText(tue.toString());
+            wednesday.setText(wed.toString());
+            thursday.setText(thu.toString());
+            friday.setText(fri.toString());
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
     @FXML
