@@ -82,12 +82,12 @@
         <rowConstraints>
           <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="80.0" vgrow="SOMETIMES" />
           <RowConstraints percentHeight="8.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" percentHeight="17.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" percentHeight="17.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" percentHeight="17.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" percentHeight="17.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" percentHeight="16.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" percentHeight="16.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" percentHeight="16.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" percentHeight="16.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" percentHeight="16.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Pane id="scheduleBackground" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="1" GridPane.rowSpan="6" />
@@ -253,15 +253,6 @@
                   </ContextMenu>
                </contextMenu>
             </Label>
-            <Label fx:id="tue12" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="2" GridPane.rowIndex="4">
-               <contextMenu>
-                  <ContextMenu>
-                     <items>
-                        <MenuItem fx:id="cmTue12" mnemonicParsing="false" onAction="#cmTue12a" text="Usuń rezerwację" visible="false" />
-                     </items>
-                  </ContextMenu>
-               </contextMenu>
-            </Label>
             <Label fx:id="wed12" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <contextMenu>
                   <ContextMenu>
@@ -418,6 +409,15 @@
                <font>
                   <Font size="14.0" />
                </font>
+            </Label>
+            <Label fx:id="tue12" alignment="CENTER" prefHeight="300.0" prefWidth="300.0" text="-" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem fx:id="cmTue12" mnemonicParsing="false" onAction="#cmTue12a" text="Usuń rezerwację" visible="false" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
             </Label>
          </children>
       </GridPane>

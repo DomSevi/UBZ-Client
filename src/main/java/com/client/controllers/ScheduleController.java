@@ -154,6 +154,18 @@ public class ScheduleController {
 
     public void setSchedule(Long id, String type, Long level) {
         addReservationButton.setDisable(true);
+        col6.setPercentWidth(0);
+        addLabel.setVisible(false);
+        searchFilter.setVisible(false);
+        table.setVisible(false);
+        dayChoicebox.setVisible(false);
+        hourChoicebox.setVisible(false);
+        acceptButton.setVisible(false);
+        resetButton.setVisible(false);
+        resetImg.setVisible(false);
+        errorLabel.setVisible(false);
+        addRes.setVisible(true);
+        addResExit.setVisible(false);
         topLabel.setText("Szczegółowy plan dla " + type + " na piętrze " + level);
         try {
             RoomConv rc = new RoomConv();
