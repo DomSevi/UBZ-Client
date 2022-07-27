@@ -189,7 +189,6 @@ public class HomeEmpController {
                         errorLabel.setVisible(true);
                         return;
                     }
-
                     cc.removeCredentialsByLogin(emp.getLogin());
                     ec.removeEmployeeById(emp.getId());
                 } catch (IOException ex) {

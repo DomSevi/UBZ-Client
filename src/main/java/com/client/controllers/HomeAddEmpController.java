@@ -15,7 +15,7 @@ public class HomeAddEmpController {
         // Ustawia swoj controller w statycznym polu rodzica
         HomeController.homeAddEmpController = this;
         jobChoiceBox.getItems().removeAll(jobChoiceBox.getItems());
-        jobChoiceBox.getItems().addAll("-", "Magister", "Doktor", "Professor");
+        jobChoiceBox.getItems().addAll("-", "Magister", "Doktor", "Profesor");
         genderChoiceBox.getItems().removeAll(genderChoiceBox.getItems());
         genderChoiceBox.getItems().addAll("Mężczyzna", "Kobieta");
         adminChoiceBox.getItems().removeAll(adminChoiceBox.getItems());

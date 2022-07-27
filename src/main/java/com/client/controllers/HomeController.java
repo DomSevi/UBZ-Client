@@ -58,11 +58,12 @@ public class HomeController {
 
         if(CurrentSession.isIsAdmin()) {
             loggedInAs.setUnderline(true);
-            homeEmpController.table.setEditable(true);
+            homeEmpController.table.setEditable(false);
             homeEmpController.delEmpButton.setDisable(false);
             addEmpButton.setDisable(false);
             addRoomButton.setDisable(false);
             homeEmpController.lockButton.setDisable(false);
+            homeRoomsController.delRoomButton.setDisable(false);
         }
         else {
             loggedInAs.setUnderline(false);
@@ -71,6 +72,7 @@ public class HomeController {
             addEmpButton.setDisable(true);
             addRoomButton.setDisable(true);
             homeEmpController.lockButton.setDisable(true);
+            homeRoomsController.delRoomButton.setDisable(true);
         }
     }
 

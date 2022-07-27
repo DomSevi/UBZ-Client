@@ -77,6 +77,8 @@ public class HomeRoomsController {
         wednesday.setText("");
         thursday.setText("");
         friday.setText("");
+        heading.setText("Wybierz pokój z listy");
+        errorLabel.setVisible(false);
     }
 
     @FXML
@@ -143,9 +145,11 @@ public class HomeRoomsController {
 
     @FXML
     Button delRoomButton;
+    @FXML
+    Label errorLabel;
 
     @FXML
-    protected void delEmployee() {
+    protected void delRoom() {
         if(table.getSelectionModel().getSelectedItem() != null) {
             RoomClient e = table.getSelectionModel().getSelectedItem();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Usunąć " + e.getType() +
@@ -158,7 +162,14 @@ public class HomeRoomsController {
                 heading.setTextAlignment(TextAlignment.CENTER);
                 try {
                     RoomConv ec = new RoomConv();
+                    Room r = ec.getRoomByNr(Long.parseLong(e.getId()));
+                    if(!r.getReservations().isEmpty()) {
+                        errorLabel.setText("Wybrany pokój ma trwające rezerwacje!");
+                        errorLabel.setVisible(true);
+                        return;
+                    }
                     ec.removeRoomByNr(Long.parseLong(e.getId()));
+
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
