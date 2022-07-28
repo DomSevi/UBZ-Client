@@ -21,14 +21,14 @@ public class RoomConv {
                 .body();
     }
 
-    public void createNewRoom(Room room) throws IOException{
-        roomAcc.addNewRoom(room)
+    public Void createNewRoom(Room room) throws IOException{
+        return roomAcc.addNewRoom(room)
                 .execute()
                 .body();
     }
 
-    public void removeRoomByNr(Long nr) throws IOException{
-        roomAcc.deleteRoomByNr(nr)
+    public Void removeRoomByNr(Long nr) throws IOException{
+        return roomAcc.deleteRoomByNr(nr)
                 .execute()
                 .body();
     }

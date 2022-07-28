@@ -56,46 +56,28 @@ public class ClientMain extends Application {
 
         // problem z data (dodawanie rezerwacji - nierozwiazany)
 
-        //EmployeeConv employeeConv = new EmployeeConv();
-        //CredentialsConv credentialsConv = new CredentialsConv();
+        EmployeeConv employeeConv = new EmployeeConv();
+        CredentialsConv credentialsConv = new CredentialsConv();
         //ReservationConv reservationConv = new ReservationConv();
         //RoomConv roomConv = new RoomConv();
 
         //List<Employee> employees;
-        //List<Credentials> credentials;
+        List<Credentials> credentials;
         //List<Reservation> reservations;
         //List<Room> rooms;
 
-        //Employee e;
+        Employee e;
+        try {
+            e = employeeConv.getEmployeeById(13L);
+            System.out.println(e);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         //Credentials c;
         //Reservation re;
         //Room r;
         //Boolean correct;
         //'2016-06-22 19:10:25-07'
-        //try {
-            /* jesli uzywamy get***By*** (metode ktora zwraca pojedynczy obiekt, trzeba sprawdzic
-            czy nie jest on nullem bo moze go nie byc w bazie / NullPointerEx
-            e = employeeConv.getEmployeeByLogin("ghost");
-            if(e == null){
-                // wypisz blad
-            }
-            else {
-                // jest ok
-            }
-            */
-            //e = employeeConv.getEmployeeByLogin("kamiks");
-            //List<Reservation> lista = e.getReservations();
-            //lista.forEach(System.out::println);
-            //System.out.println();
-            //employees = employeeConv.getAllEmployees();
-            //employees.forEach(System.out::println);
-            //reservations = reservationConv.getAllReservations();
-            //reservations.forEach(System.out::println);
-            //credentials = credentialsConv.getAllCredentials();
-            //credentials.forEach(System.out::println);
-        //} catch (IOException ex) {
-        //    ex.printStackTrace();
-        //}
 
     }
 }

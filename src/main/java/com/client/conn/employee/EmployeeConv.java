@@ -21,6 +21,12 @@ public class EmployeeConv {
                 .body();
     }
 
+    public Employee getEmployeeById(Long id) throws IOException{
+        return employeeAcc.findEmployeeById(id)
+                .execute()
+                .body();
+    }
+
     // Stara niedziałajaca wersja
     //public Employee createNewEmployee(Employee newEmployee) throws IOException {
     //    return employeeAcc.addNewEmployee(newEmployee)

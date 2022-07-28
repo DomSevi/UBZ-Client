@@ -13,6 +13,8 @@ public interface EmployeeAcc {
     @GET("/employees/{login}")
     Call<Employee> findEmployeeByLogin(@Path("login") String login);
 
+    @GET("/employees/find/{id}")
+    Call<Employee> findEmployeeById(@Path("id") Long id);
 
     //@POST("/employees/add")
     //Call<Employee> addNewEmployee(@Body Employee newEmployee);

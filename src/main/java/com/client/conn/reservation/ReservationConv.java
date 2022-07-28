@@ -21,14 +21,14 @@ public class ReservationConv {
                 .body();
     }
 
-    public void createNewReservation(Reservation newReservation) throws IOException{
-        reservationAcc.addNewReservation(newReservation)
+    public Void createNewReservation(Reservation newReservation) throws IOException{
+        return reservationAcc.addNewReservation(newReservation)
                 .execute()
                 .body();
     }
 
-    public void removeReservationByid(Long id) throws IOException{
-        reservationAcc.deleteReservationById(id)
+    public Void removeReservationByid(Long id) throws IOException{
+        return reservationAcc.deleteReservationById(id)
                 .execute()
                 .body();
     }
