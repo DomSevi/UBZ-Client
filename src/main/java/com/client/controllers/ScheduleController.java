@@ -133,6 +133,7 @@ public class ScheduleController {
     private String name;
     private String surname;
     private List<Integer> listaRez = Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    //private Map<Long, String> listaEmp = new HashMap<>();
 
     // Funkcja wywoływana gdy wchodzimy na strone rezerwacji
     public void setSchedule(String login, String name, String surname) {
@@ -181,6 +182,15 @@ public class ScheduleController {
     // HOUr 8 ...
     // Dla kazdej rezerwacji wywoluje funkcji
     private void fillSchedule(List<Reservation> lista, boolean isPerson) {
+        /*if(!lista.isEmpty()) {
+            try {
+                EmployeeConv ec = new EmployeeConv();
+                List<Employee> e = ec.getAllEmployees();
+                e.forEach(emp -> listaEmp.put(emp.getId(),emp.getLogin()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }*/
         for (Reservation r : lista) {
             Long day = r.getDay();
             Long hour = r.getHour();
@@ -330,11 +340,11 @@ public class ScheduleController {
         }
         else {
             mi.setVisible(false);
-            EmployeeConv ec = new EmployeeConv();
-            List<Employee> eList = null;
             try {
-                eList = ec.getAllEmployees();
-                for (Employee e: eList) {
+                EmployeeConv ec = new EmployeeConv();
+                // pierwotna slaba wersja
+                //List<Employee> eList = ec.getAllEmployees();
+                /*for (Employee e: eList) {
                     if(e.getId().equals(id)) {
                         int level = 0;
                         if(e.getJob().equals("Magister"))
@@ -356,6 +366,35 @@ public class ScheduleController {
                         return;
 
                     }
+                }*/
+                // wersja z hasz mapa
+                /*if(listaEmp.containsKey(id)) {
+                    Employee e = ec.getEmployeeByLogin(listaEmp.get(id));
+                    if (e != null) {
+                        if (e.getJob().equals("Magister"))
+                            l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #489ff0, #4872f0);");
+                        else if (e.getJob().equals("Doktor"))
+                            l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #ebd834, #eddf13);");
+                        else if (e.getJob().equals("Profesor"))
+                            l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #c45c47, #e84220);");
+                        else
+                            l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #48cfd9, #28e9f7);");
+                        l.setText(e.getName() + " " + e.getSurname());
+                        l.setVisible(true);
+                    }
+                }*/
+                Employee e = ec.getEmployeeById(id);
+                if (e != null) {
+                    if (e.getJob().equals("Magister"))
+                        l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #489ff0, #4872f0);");
+                    else if (e.getJob().equals("Doktor"))
+                        l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #ebd834, #eddf13);");
+                    else if (e.getJob().equals("Profesor"))
+                        l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #c45c47, #e84220);");
+                    else
+                        l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #48cfd9, #28e9f7);");
+                    l.setText(e.getName() + " " + e.getSurname());
+                    l.setVisible(true);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
