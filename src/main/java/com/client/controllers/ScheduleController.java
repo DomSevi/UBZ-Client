@@ -319,7 +319,12 @@ public class ScheduleController {
     // yellolw -fx-background-color:  linear-gradient(to bottom, #80d945, #7cf52c);    2
     private void styleSelected(Label l, Long id, boolean isPerson, MenuItem mi) {
         if (isPerson) {
-            mi.setVisible(true);
+            //
+            if(CurrentSession.isIsAdmin())
+                mi.setVisible(true);
+            else
+                mi.setVisible(login.equals(CurrentSession.getUserName()));
+
             try {
                 RoomConv rc = new RoomConv();
                 Room r = rc.getRoomByNr(id);

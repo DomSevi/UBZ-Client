@@ -11,6 +11,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="room-management-client" target="17" />
+      <module name="UBZ-Client" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

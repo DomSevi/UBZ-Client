@@ -66,13 +66,7 @@ public class ClientMain extends Application {
         //List<Reservation> reservations;
         //List<Room> rooms;
 
-        Employee e;
-        try {
-            e = employeeConv.getEmployeeById(13L);
-            System.out.println(e);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+
         //Credentials c;
         //Reservation re;
         //Room r;
