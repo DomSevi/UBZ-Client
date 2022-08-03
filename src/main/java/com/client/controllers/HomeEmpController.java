@@ -224,12 +224,16 @@ public class HomeEmpController {
     TableColumn<EmployeeClient, String> jobColumn;
     private static ObservableList<EmployeeClient> masterData = FXCollections.observableArrayList();
 
-    private void updateEmp() {
+    private void updateEmp(String newS, int n) {
         EmployeeConv ec = new EmployeeConv();
         try {
             EmployeeClient e = table.getSelectionModel().getSelectedItem();
-            System.out.println(e.getFirstName());
-            ec.updateEmployeeById(e.getId(),e.getFirstName(),e.getLastName(),e.getJob());
+            if(n == 0)
+                ec.updateEmployeeById(e.getId(), newS, e.getLastName(), e.getJob());
+            else if(n == 1)
+                ec.updateEmployeeById(e.getId(), e.getFirstName(), newS, e.getJob());
+            else if(n == 2)
+                ec.updateEmployeeById(e.getId(), e.getFirstName(), e.getLastName(), newS);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -239,21 +243,21 @@ public class HomeEmpController {
     public void editFirstName(TableColumn.CellEditEvent<?,?> cEE) {
         int index = table.getSelectionModel().getSelectedIndex();
         masterData.get(index).setFirstName((String) cEE.getNewValue());
-        updateEmp();
+        updateEmp((String)cEE.getNewValue(),0);
     }
 
     @FXML
     public void editLastName(TableColumn.CellEditEvent<?,?> cEE) {
         int index = table.getSelectionModel().getSelectedIndex();
         masterData.get(index).setLastName((String) cEE.getNewValue());
-        updateEmp();
+        updateEmp((String) cEE.getNewValue(), 1);
     }
 
     @FXML
     public void editJob(TableColumn.CellEditEvent<?,?> cEE) {
         int index = table.getSelectionModel().getSelectedIndex();
         masterData.get(index).setJob((String) cEE.getNewValue());
-        updateEmp();
+        updateEmp((String) cEE.getNewValue(), 2);
     }
 
     public HomeEmpController() {

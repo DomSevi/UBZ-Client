@@ -8,7 +8,6 @@ import com.client.conn.reservation.ReservationConv;
 import com.client.conn.room.Room;
 import com.client.conn.room.RoomConv;
 import com.client.data.RoomClient;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -16,17 +15,12 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.image.Image;
+
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.DateTimeException;
-import java.time.Instant;
-import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.*;
 
 public class ScheduleController {
@@ -85,6 +79,19 @@ public class ScheduleController {
         table.setItems(sortedList);
     }
 
+    public void resetAdd() {
+        col6.setPercentWidth(0);
+        addLabel.setVisible(false);
+        searchFilter.setVisible(false);
+        table.setVisible(false);
+        dayChoicebox.setVisible(false);
+        hourChoicebox.setVisible(false);
+        acceptButton.setVisible(false);
+        resetButton.setVisible(false);
+        resetImg.setVisible(false);
+        errorLabel.setVisible(false);
+    }
+
     public void clear() {
         errorLabel.setVisible(false);
         mon8.setVisible(false);
@@ -135,10 +142,20 @@ public class ScheduleController {
     private List<Integer> listaRez = Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     //private Map<Long, String> listaEmp = new HashMap<>();
 
-    // Funkcja wywoływana gdy wchodzimy na strone rezerwacji
+    // Gdy wchodzimy od strony pracowników
     public void setSchedule(String login, String name, String surname) {
+        addReservationButton.setVisible(true);
+        if(!addLabel.isVisible()) {
+            addRes.setVisible(true);
+            addResExit.setVisible(false);
+        }
         // jak sie nie jest adminem to wychodzi true
         addReservationButton.setDisable(!CurrentSession.isIsAdmin() && !login.equals(CurrentSession.getUserName()));
+        if(addReservationButton.isDisabled()){
+            resetAdd();
+            addRes.setVisible(true);
+            addResExit.setVisible(false);
+        }
         this.login = login;
         this.name = name;
         this.surname = surname;
@@ -153,20 +170,14 @@ public class ScheduleController {
         }
     }
 
+    //Gdy wejście od strony pokoi
     public void setSchedule(Long id, String type, Long level) {
-        addReservationButton.setDisable(true);
-        col6.setPercentWidth(0);
-        addLabel.setVisible(false);
-        searchFilter.setVisible(false);
-        table.setVisible(false);
-        dayChoicebox.setVisible(false);
-        hourChoicebox.setVisible(false);
-        acceptButton.setVisible(false);
-        resetButton.setVisible(false);
-        resetImg.setVisible(false);
-        errorLabel.setVisible(false);
-        addRes.setVisible(true);
+        resetAdd();
+        addReservationButton.setVisible(false);
+        addRes.setVisible(false);
         addResExit.setVisible(false);
+        addReservationButton.setDisable(true);
+        
         topLabel.setText("Szczegółowy plan dla " + type + " na piętrze " + level);
         try {
             RoomConv rc = new RoomConv();
@@ -178,19 +189,10 @@ public class ScheduleController {
         }
     }
 
-    // DAY - 1 - monday, ...
-    // HOUr 8 ...
+    // day := 0 - monday, 1 - tuesday, ...
+    // hour := 8, 10, .., 16
     // Dla kazdej rezerwacji wywoluje funkcji
     private void fillSchedule(List<Reservation> lista, boolean isPerson) {
-        /*if(!lista.isEmpty()) {
-            try {
-                EmployeeConv ec = new EmployeeConv();
-                List<Employee> e = ec.getAllEmployees();
-                e.forEach(emp -> listaEmp.put(emp.getId(),emp.getLogin()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }*/
         for (Reservation r : lista) {
             Long day = r.getDay();
             Long hour = r.getHour();
@@ -203,7 +205,8 @@ public class ScheduleController {
         }
     }
 
-    // jezeli isPerson = true, id - id pokoju, isPerson = false, id - id osoby
+    // jezeli isPerson = true, id - id pokoju;
+    //        isPerson = false, id - id osoby
     private void fillSingle(int day, int hour, Long id, boolean isPerson, int resId) {
         if (day == 0) {
             if (hour == 8) {
@@ -316,7 +319,7 @@ public class ScheduleController {
     // orange -fx-background-color:  linear-gradient(to bottom, #ebd834, #eddf13);  3
     // blue -fx-background-color:  linear-gradient(to bottom, #489ff0, #4872f0);    1
     // cyean -fx-background-color:  linear-gradient(to bottom, #48cfd9, #28e9f7);    0
-    // yellolw -fx-background-color:  linear-gradient(to bottom, #80d945, #7cf52c);    2
+    // yellow -fx-background-color:  linear-gradient(to bottom, #80d945, #7cf52c);    2
     private void styleSelected(Label l, Long id, boolean isPerson, MenuItem mi) {
         if (isPerson) {
             //
@@ -347,47 +350,6 @@ public class ScheduleController {
             mi.setVisible(false);
             try {
                 EmployeeConv ec = new EmployeeConv();
-                // pierwotna slaba wersja
-                //List<Employee> eList = ec.getAllEmployees();
-                /*for (Employee e: eList) {
-                    if(e.getId().equals(id)) {
-                        int level = 0;
-                        if(e.getJob().equals("Magister"))
-                            level = 1;
-                        else if (e.getJob().equals("Doktor"))
-                            level = 2;
-                        else if (e.getJob().equals("Profesor"))
-                            level = 3;
-                        l.setText(e.getName() + " " + e.getSurname());
-                        if (level == 0)
-                            l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #48cfd9, #28e9f7);");
-                        else if (level == 1)
-                            l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #489ff0, #4872f0);");
-                        else if (level == 2)
-                            l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #ebd834, #eddf13);");
-                        else if (level == 3)
-                            l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #c45c47, #e84220);");
-                        l.setVisible(true);
-                        return;
-
-                    }
-                }*/
-                // wersja z hasz mapa
-                /*if(listaEmp.containsKey(id)) {
-                    Employee e = ec.getEmployeeByLogin(listaEmp.get(id));
-                    if (e != null) {
-                        if (e.getJob().equals("Magister"))
-                            l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #489ff0, #4872f0);");
-                        else if (e.getJob().equals("Doktor"))
-                            l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #ebd834, #eddf13);");
-                        else if (e.getJob().equals("Profesor"))
-                            l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #c45c47, #e84220);");
-                        else
-                            l.setStyle("-fx-font-size: 20px;-fx-background-radius: 10;-fx-background-color:  linear-gradient(to bottom, #48cfd9, #28e9f7);");
-                        l.setText(e.getName() + " " + e.getSurname());
-                        l.setVisible(true);
-                    }
-                }*/
                 Employee e = ec.getEmployeeById(id);
                 if (e != null) {
                     if (e.getJob().equals("Magister"))
@@ -413,9 +375,12 @@ public class ScheduleController {
     @FXML
     Button addReservationButton;
     @FXML
-    Button exitButton;
+    ImageView addRes;
     @FXML
-    Label errorLabel;
+    ImageView addResExit;
+    @FXML
+    Button exitButton;
+
 
     @FXML
     protected void exit() {
@@ -457,6 +422,8 @@ public class ScheduleController {
     @FXML
     ChoiceBox<String> hourChoicebox;
     @FXML
+    Label errorLabel;
+    @FXML
     Button acceptButton;
 
     @FXML
@@ -492,15 +459,11 @@ public class ScheduleController {
             dayChoicebox.getSelectionModel().clearSelection();
             addResExit.setVisible(false);
             addRes.setVisible(true);
-
         }
     }
 
-    @FXML
-    ImageView addRes;
-    @FXML
-    ImageView addResExit;
 
+    // Odpowiada za dodawanie nowych rezerwacji
     @FXML
     protected void submitRes() {
         if(dayChoicebox.getSelectionModel().isEmpty() || hourChoicebox.getSelectionModel().isEmpty()) {
@@ -530,7 +493,6 @@ public class ScheduleController {
                 Employee e = ec.getEmployeeByLogin(login);
                 resC.createNewReservation(new Reservation(myDay,myHour,r.getRoomNr(),e.getId()));
 
-
                 errorLabel.setVisible(true);
                 errorLabel.setText("Dodano pomyślnie!");
 
@@ -545,21 +507,7 @@ public class ScheduleController {
         }
     }
 
-    private String getHour() {
-        if(hourChoicebox.getSelectionModel().getSelectedIndex() == 0)
-            return "8";
-        if(hourChoicebox.getSelectionModel().getSelectedIndex() == 1)
-            return "10";
-        if(hourChoicebox.getSelectionModel().getSelectedIndex() == 2)
-            return "12";
-        if(hourChoicebox.getSelectionModel().getSelectedIndex() == 3)
-            return "14";
-        if(hourChoicebox.getSelectionModel().getSelectedIndex() == 4)
-            return "16";
-        return "20";
-    }
-
-
+    // Usuwa konkretna rezerwacje
     private void deleteSchedule(int resId, Label l, MenuItem m,int listId) {
         if(resId == 0)
             return;
@@ -572,7 +520,21 @@ public class ScheduleController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    // Zamienia indexy choiceboxa na potrzebne zmienne
+    private String getHour() {
+        if(hourChoicebox.getSelectionModel().getSelectedIndex() == 0)
+            return "8";
+        if(hourChoicebox.getSelectionModel().getSelectedIndex() == 1)
+            return "10";
+        if(hourChoicebox.getSelectionModel().getSelectedIndex() == 2)
+            return "12";
+        if(hourChoicebox.getSelectionModel().getSelectedIndex() == 3)
+            return "14";
+        if(hourChoicebox.getSelectionModel().getSelectedIndex() == 4)
+            return "16";
+        return "20";
     }
 
     @FXML

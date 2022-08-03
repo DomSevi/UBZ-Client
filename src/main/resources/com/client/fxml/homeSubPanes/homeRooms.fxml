@@ -155,7 +155,7 @@
             <Insets top="10.0" />
          </GridPane.margin>
       </Label>
-      <Label styleClass="infoField" text="Nr pokoju" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+      <Label styleClass="infoField" text="Id pokoju" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets top="10.0" />
          </GridPane.margin>

@@ -179,6 +179,35 @@ public class HomeRoomsController {
         }
     }
 
+    /*private void updateRoom(String newS, int n) {
+        RoomConv rc = new RoomConv();
+    }
+
+    @FXML
+    public void editRoomId(TableColumn.CellEditEvent<?, ?> cEE) {
+        int index = table.getSelectionModel().getSelectedIndex();
+        masterData.get(index).setId((String) cEE.getNewValue());
+        updateRoom((String) cEE.getNewValue(),0);
+    }
+    @FXML
+    public void editLevel(TableColumn.CellEditEvent<?, ?> cEE) {
+        int index = table.getSelectionModel().getSelectedIndex();
+        masterData.get(index).setLevel((String) cEE.getNewValue());
+        updateRoom((String) cEE.getNewValue(),1);
+    }
+    @FXML
+    public void editCap(TableColumn.CellEditEvent<?, ?> cEE) {
+        int index = table.getSelectionModel().getSelectedIndex();
+        masterData.get(index).setCapacity((String) cEE.getNewValue());
+        updateRoom((String) cEE.getNewValue(),2);
+    }
+    @FXML
+    public void editType(TableColumn.CellEditEvent<?, ?> cEE) {
+        int index = table.getSelectionModel().getSelectedIndex();
+        masterData.get(index).setType((String) cEE.getNewValue());
+        updateRoom((String) cEE.getNewValue(),3);
+    }*/
+
     public static void refreshTable() {
         masterData.removeAll(masterData);
         RoomConv rc = new RoomConv();
@@ -205,37 +234,6 @@ public class HomeRoomsController {
     TableColumn<RoomClient, String> roomTypeColumn;
 
     private static ObservableList<RoomClient> masterData = FXCollections.observableArrayList();
-
-    /*private void updateEmp() {
-        EmployeeConv ec = new EmployeeConv();
-        try {
-            EmployeeClient e = table.getSelectionModel().getSelectedItem();
-            ec.updateEmployeeById(e.getId(),e.getFirstName(),e.getLastName(),e.getJob());
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }*/
-
-    /*@FXML
-    public void editFirstName(TableColumn.CellEditEvent<?,?> cEE) {
-        int index = table.getSelectionModel().getSelectedIndex();
-        masterData.get(index).setFirstName((String) cEE.getNewValue());
-        updateEmp();
-    }
-
-    @FXML
-    public void editLastName(TableColumn.CellEditEvent<?,?> cEE) {
-        int index = table.getSelectionModel().getSelectedIndex();
-        masterData.get(index).setLastName((String) cEE.getNewValue());
-        updateEmp();
-    }
-
-    @FXML
-    public void editJob(TableColumn.CellEditEvent<?,?> cEE) {
-        int index = table.getSelectionModel().getSelectedIndex();
-        masterData.get(index).setJob((String) cEE.getNewValue());
-        updateEmp();
-    }*/
 
     public HomeRoomsController() {
         refreshTable();

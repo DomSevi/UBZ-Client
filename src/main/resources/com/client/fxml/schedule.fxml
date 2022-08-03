@@ -119,7 +119,7 @@
                <contextMenu>
                   <ContextMenu>
                      <items>
-                        <MenuItem fx:id="cmWed8" mnemonicParsing="false" onAction="#cmWed8a" text="Dodaj rezerwację" visible="false" />
+                        <MenuItem fx:id="cmWed8" mnemonicParsing="false" onAction="#cmWed8a" text="Usuń rezerwację" visible="false" />
                      </items>
                   </ContextMenu>
                </contextMenu>
