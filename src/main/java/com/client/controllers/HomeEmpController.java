@@ -228,6 +228,7 @@ public class HomeEmpController {
         EmployeeConv ec = new EmployeeConv();
         try {
             EmployeeClient e = table.getSelectionModel().getSelectedItem();
+            System.out.println(e.getFirstName());
             ec.updateEmployeeById(e.getId(),e.getFirstName(),e.getLastName(),e.getJob());
         } catch (IOException ex) {
             ex.printStackTrace();
